@@ -1,0 +1,10 @@
+# RedLens 数据工厂依赖
+# Core dependencies for web scraping
+playwright==1.41.0
+requests==2.31.0
+
+# Data processing
+pytz==2024.1
+
+# HTTP retry mechanism
+tenacity==8.2.3
