@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# 日志文件
+*.log
+update.log
+
+# 临时文件
+*.tmp
+*.bak
+
+# Playwright
+.playwright/
+
+# 测试文件
+test_*.py
+*_test.py
+debug_*.py
+
+# 数据文件（可选：如果不想提交数据到git）
+# matches.json
+# migu_videos_complete.json
+# matches_with_videos.json
+
+# API响应缓存
+api_response_*.json
+

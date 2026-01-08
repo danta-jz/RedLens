@@ -1,0 +1,366 @@
+[
+  {
+    "date": "2025-08-17",
+    "time": "23:30",
+    "opponent": "Manchester United",
+    "is_home": false,
+    "venue": "Old Trafford",
+    "status": "C",
+    "arsenal_score": 1.0,
+    "opponent_score": 0.0,
+    "outcome": "A"
+  },
+  {
+    "date": "2025-08-24",
+    "time": "00:30",
+    "opponent": "Leeds United",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "C",
+    "arsenal_score": 5.0,
+    "opponent_score": 0.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2025-08-31",
+    "time": "23:30",
+    "opponent": "Liverpool",
+    "is_home": false,
+    "venue": "Anfield",
+    "status": "C",
+    "arsenal_score": 0.0,
+    "opponent_score": 1.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2025-09-13",
+    "time": "19:30",
+    "opponent": "Nottingham Forest",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "C",
+    "arsenal_score": 3.0,
+    "opponent_score": 0.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2025-09-21",
+    "time": "23:30",
+    "opponent": "Manchester City",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "C",
+    "arsenal_score": 1.0,
+    "opponent_score": 1.0,
+    "outcome": "D"
+  },
+  {
+    "date": "2025-09-28",
+    "time": "23:30",
+    "opponent": "Newcastle United",
+    "is_home": false,
+    "venue": "St. James' Park",
+    "status": "C",
+    "arsenal_score": 2.0,
+    "opponent_score": 1.0,
+    "outcome": "A"
+  },
+  {
+    "date": "2025-10-04",
+    "time": "22:00",
+    "opponent": "West Ham United",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "C",
+    "arsenal_score": 2.0,
+    "opponent_score": 0.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2025-10-19",
+    "time": "00:30",
+    "opponent": "Fulham",
+    "is_home": false,
+    "venue": "Craven Cottage",
+    "status": "C",
+    "arsenal_score": 1.0,
+    "opponent_score": 0.0,
+    "outcome": "A"
+  },
+  {
+    "date": "2025-10-26",
+    "time": "22:00",
+    "opponent": "Crystal Palace",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "C",
+    "arsenal_score": 1.0,
+    "opponent_score": 0.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2025-11-01",
+    "time": "23:00",
+    "opponent": "Burnley",
+    "is_home": false,
+    "venue": "Turf Moor",
+    "status": "C",
+    "arsenal_score": 2.0,
+    "opponent_score": 0.0,
+    "outcome": "A"
+  },
+  {
+    "date": "2025-11-09",
+    "time": "01:30",
+    "opponent": "Sunderland",
+    "is_home": false,
+    "venue": "Stadium of Light",
+    "status": "C",
+    "arsenal_score": 2.0,
+    "opponent_score": 2.0,
+    "outcome": "D"
+  },
+  {
+    "date": "2025-11-24",
+    "time": "00:30",
+    "opponent": "Tottenham Hotspur",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "C",
+    "arsenal_score": 4.0,
+    "opponent_score": 1.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2025-12-01",
+    "time": "00:30",
+    "opponent": "Chelsea",
+    "is_home": false,
+    "venue": "Stamford Bridge",
+    "status": "C",
+    "arsenal_score": 1.0,
+    "opponent_score": 1.0,
+    "outcome": "D"
+  },
+  {
+    "date": "2025-12-04",
+    "time": "03:30",
+    "opponent": "Brentford",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "C",
+    "arsenal_score": 2.0,
+    "opponent_score": 0.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2025-12-06",
+    "time": "20:30",
+    "opponent": "Aston Villa",
+    "is_home": false,
+    "venue": "Villa Park",
+    "status": "C",
+    "arsenal_score": 1.0,
+    "opponent_score": 2.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2025-12-14",
+    "time": "04:00",
+    "opponent": "Wolverhampton Wanderers",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "C",
+    "arsenal_score": 2.0,
+    "opponent_score": 1.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2025-12-21",
+    "time": "04:00",
+    "opponent": "Everton",
+    "is_home": false,
+    "venue": "Hill Dickinson Stadium",
+    "status": "C",
+    "arsenal_score": 1.0,
+    "opponent_score": 0.0,
+    "outcome": "A"
+  },
+  {
+    "date": "2025-12-27",
+    "time": "23:00",
+    "opponent": "Brighton & Hove Albion",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "C",
+    "arsenal_score": 2.0,
+    "opponent_score": 1.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2025-12-31",
+    "time": "04:15",
+    "opponent": "Aston Villa",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "C",
+    "arsenal_score": 4.0,
+    "opponent_score": 1.0,
+    "outcome": "H"
+  },
+  {
+    "date": "2026-01-04",
+    "time": "01:30",
+    "opponent": "Bournemouth",
+    "is_home": false,
+    "venue": "Vitality Stadium",
+    "status": "C",
+    "arsenal_score": 3.0,
+    "opponent_score": 2.0,
+    "outcome": "A"
+  },
+  {
+    "date": "2026-01-09",
+    "time": "04:00",
+    "opponent": "Liverpool",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-01-18",
+    "time": "01:30",
+    "opponent": "Nottingham Forest",
+    "is_home": false,
+    "venue": "The City Ground",
+    "status": "U"
+  },
+  {
+    "date": "2026-01-26",
+    "time": "00:30",
+    "opponent": "Manchester United",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-01-31",
+    "time": "23:00",
+    "opponent": "Leeds United",
+    "is_home": false,
+    "venue": "Elland Road",
+    "status": "U"
+  },
+  {
+    "date": "2026-02-07",
+    "time": "23:00",
+    "opponent": "Sunderland",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-02-13",
+    "time": "04:00",
+    "opponent": "Brentford",
+    "is_home": false,
+    "venue": "Gtech Community Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-02-23",
+    "time": "00:30",
+    "opponent": "Tottenham Hotspur",
+    "is_home": false,
+    "venue": "Tottenham Hotspur Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-03-02",
+    "time": "00:30",
+    "opponent": "Chelsea",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-03-05",
+    "time": "04:00",
+    "opponent": "Brighton & Hove Albion",
+    "is_home": false,
+    "venue": "American Express Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-03-14",
+    "time": "23:00",
+    "opponent": "Everton",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-03-21",
+    "time": "23:00",
+    "opponent": "Wolverhampton Wanderers",
+    "is_home": false,
+    "venue": "Molineux Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-04-11",
+    "time": "22:00",
+    "opponent": "Bournemouth",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-04-18",
+    "time": "22:00",
+    "opponent": "Manchester City",
+    "is_home": false,
+    "venue": "Etihad Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-04-25",
+    "time": "22:00",
+    "opponent": "Newcastle United",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-05-02",
+    "time": "22:00",
+    "opponent": "Fulham",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-05-09",
+    "time": "22:00",
+    "opponent": "West Ham United",
+    "is_home": false,
+    "venue": "London Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-05-17",
+    "time": "22:00",
+    "opponent": "Burnley",
+    "is_home": true,
+    "venue": "Emirates Stadium",
+    "status": "U"
+  },
+  {
+    "date": "2026-05-24",
+    "time": "23:00",
+    "opponent": "Crystal Palace",
+    "is_home": false,
+    "venue": "Selhurst Park",
+    "status": "U"
+  }
+]
