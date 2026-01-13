@@ -1,70 +1,35 @@
 #!/bin/bash
-#
-# RedLens 数据工厂 - 自动更新脚本
-# 定期运行此脚本以更新赛程和录像数据
-#
+set -e
 
-set -e  # 遇到错误立即退出
+# ... (前半部分 echo 保持不变) ...
 
-echo "🚀 RedLens 数据工厂开始运行..."
-echo "时间: $(date '+%Y-%m-%d %H:%M:%S')"
-echo ""
-
-# 切换到脚本所在目录
-cd "$(dirname "$0")"
+# 打印当前运行模式
+echo "⚙️ 运行模式 (RUN_MODE): ${RUN_MODE:-force}"
 
 # Step 1: 获取英超官方赛程
-echo "📊 Step 1/3: 获取英超官方赛程..."
+echo "📊 Step 1/4: 获取英超官方赛程..."
+# 只有在 force 模式或者 matches.json 不存在时才强制更新赛程
+# 为了保险起见，赛程文件很小，每次更新也没问题
 python3 fetch_fixtures.py
-if [ $? -ne 0 ]; then
-    echo "❌ 获取官方赛程失败"
-    exit 1
-fi
-echo ""
 
-# Step 2: 获取咪咕视频录像链接
-echo "📹 Step 2/3: 获取咪咕视频录像..."
+# Step 2: 智能追更咪咕视频
+echo "📹 Step 2/4: 智能追更咪咕视频..."
+# 这里的 python 脚本内部会读取 RUN_MODE 环境变量
+# 如果是 smart 模式且无比赛，脚本会在这里 exit 0 退出，不再往下执行耗时操作
 python3 fetch_all_migu_videos.py
-if [ $? -ne 0 ]; then
-    echo "❌ 获取咪咕视频失败"
-    exit 1
-fi
-echo ""
+
+# 注意：如果 fetch_all_migu_videos.py 因为"没比赛"退出了，
+# 我们依然需要运行后续步骤吗？
+# 如果没抓到新视频，merge_data 出来的结果是一样的，
+# 但为了确保 git diff 能检测到"无变化"，还是跑完流程最稳妥。
+# 且 merge 和 generate 都是本地纯计算，不耗费网络资源，秒级完成。
 
 # Step 3: 数据融合
-echo "🔄 Step 3/3: 融合数据..."
+echo "🔄 Step 3/4: 数据融合..."
 python3 merge_data.py
-if [ $? -ne 0 ]; then
-    echo "❌ 数据融合失败"
-    exit 1
-fi
-echo ""
 
-echo "✅ RedLens 数据工厂完成!"
-echo "📁 生成的文件:"
-echo "   - matches.json              (英超官方赛程)"
-echo "   - migu_videos_complete.json (咪咕视频数据)"
-echo "   - matches_with_videos.json  (最终融合数据)"
-echo ""
+# Step 4: 生成 Deep Links
+echo "🔗 Step 4/4: 生成 Deep Links..."
+python3 generate_deep_links.py
 
-# 显示统计信息
-python3 -c "
-import json
-
-with open('matches_with_videos.json', 'r') as f:
-    data = json.load(f)
-
-finished = sum(1 for m in data if m.get('status') == 'C')
-with_video = sum(1 for m in data if m.get('migu_pid'))
-upcoming = len(data) - finished
-
-print('📊 数据统计:')
-print(f'   总场次: {len(data)} 场')
-print(f'   已完赛: {finished} 场 (有录像: {with_video} 场)')
-print(f'   未完赛: {upcoming} 场')
-"
-
-echo ""
-echo "💡 提示: 可以将此脚本添加到 crontab 定期运行"
-echo "   例如每天凌晨2点运行: 0 2 * * * /path/to/update_all.sh"
-
+echo "✅ 完成!"

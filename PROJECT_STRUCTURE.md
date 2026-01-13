@@ -1,12 +1,13 @@
 # 📁 RedLens 数据工厂 - 项目结构
 
-## 核心文件 (11个)
+## 核心文件 (12个)
 
-### 🔧 执行脚本 (4个)
+### 🔧 执行脚本 (5个)
 ```
 fetch_fixtures.py              # 获取英超官方赛程
-fetch_all_migu_videos.py      # 获取咪咕视频录像链接（支持历史翻页）
+fetch_all_migu_videos.py      # 获取咪咕视频录像链接（全场回放）
 merge_data.py                  # 融合官方赛程与录像链接
+generate_deep_links.py         # 生成咪咕视频App Deep Link
 update_all.sh                  # 一键自动化更新（推荐使用）
 ```
 

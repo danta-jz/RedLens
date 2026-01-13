@@ -225,7 +225,10 @@
     "opponent": "Liverpool",
     "is_home": true,
     "venue": "Emirates Stadium",
-    "status": "U"
+    "status": "C",
+    "arsenal_score": 0.0,
+    "opponent_score": 0.0,
+    "outcome": "D"
   },
   {
     "date": "2026-01-18",

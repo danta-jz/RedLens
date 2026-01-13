@@ -9,9 +9,10 @@
     "arsenal_score": 1.0,
     "opponent_score": 0.0,
     "outcome": "A",
-    "migu_pid": "957281860",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/957281860",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542513"
+    "migu_pid": "957282050",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/957282050",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542513",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957282050%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542513%22%7D%7D%7D"
   },
   {
     "date": "2025-08-24",
@@ -23,9 +24,10 @@
     "arsenal_score": 5.0,
     "opponent_score": 0.0,
     "outcome": "H",
-    "migu_pid": "957486064",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/957486064",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542506"
+    "migu_pid": "957542916",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/957542916",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542506",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957542916%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542506%22%7D%7D%7D"
   },
   {
     "date": "2025-08-31",
@@ -37,9 +39,10 @@
     "arsenal_score": 0.0,
     "opponent_score": 1.0,
     "outcome": "H",
-    "migu_pid": "957772538",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/957772538",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542492"
+    "migu_pid": "957773932",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/957773932",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542492",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957773932%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542492%22%7D%7D%7D"
   },
   {
     "date": "2025-09-13",
@@ -51,9 +54,10 @@
     "arsenal_score": 3.0,
     "opponent_score": 0.0,
     "outcome": "H",
-    "migu_pid": "958050011",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/958050011",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542490"
+    "migu_pid": "958107307",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/958107307",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542490",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958107307%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542490%22%7D%7D%7D"
   },
   {
     "date": "2025-09-21",
@@ -65,9 +69,10 @@
     "arsenal_score": 1.0,
     "opponent_score": 1.0,
     "outcome": "D",
-    "migu_pid": "958258907",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/958258907",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542480"
+    "migu_pid": "958370481",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/958370481",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542480",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958370481%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542480%22%7D%7D%7D"
   },
   {
     "date": "2025-09-28",
@@ -79,9 +84,10 @@
     "arsenal_score": 2.0,
     "opponent_score": 1.0,
     "outcome": "A",
-    "migu_pid": "958482179",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/958482179",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542464"
+    "migu_pid": "958721216",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/958721216",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542464",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958721216%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542464%22%7D%7D%7D"
   },
   {
     "date": "2025-10-04",
@@ -93,9 +99,10 @@
     "arsenal_score": 2.0,
     "opponent_score": 0.0,
     "outcome": "H",
-    "migu_pid": "958914311",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/958914311",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542460"
+    "migu_pid": "959012589",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/959012589",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542460",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959012589%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542460%22%7D%7D%7D"
   },
   {
     "date": "2025-10-19",
@@ -107,9 +114,10 @@
     "arsenal_score": 1.0,
     "opponent_score": 0.0,
     "outcome": "A",
-    "migu_pid": "959211658",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/959211658",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542448"
+    "migu_pid": "959350821",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/959350821",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542448",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959350821%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542448%22%7D%7D%7D"
   },
   {
     "date": "2025-10-26",
@@ -121,9 +129,10 @@
     "arsenal_score": 1.0,
     "opponent_score": 0.0,
     "outcome": "H",
-    "migu_pid": "959529069",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/959529069",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542440"
+    "migu_pid": "959648699",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/959648699",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542440",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959648699%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542440%22%7D%7D%7D"
   },
   {
     "date": "2025-11-01",
@@ -135,9 +144,10 @@
     "arsenal_score": 2.0,
     "opponent_score": 0.0,
     "outcome": "A",
-    "migu_pid": "959777326",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/959777326",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542430"
+    "migu_pid": "959845375",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/959845375",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542430",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959845375%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542430%22%7D%7D%7D"
   },
   {
     "date": "2025-11-09",
@@ -149,9 +159,10 @@
     "arsenal_score": 2.0,
     "opponent_score": 2.0,
     "outcome": "D",
-    "migu_pid": "959998262",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/959998262",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542414"
+    "migu_pid": "960052236",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/960052236",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542414",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960052236%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542414%22%7D%7D%7D"
   },
   {
     "date": "2025-11-24",
@@ -163,9 +174,10 @@
     "arsenal_score": 4.0,
     "opponent_score": 1.0,
     "outcome": "H",
-    "migu_pid": "960484176",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/960484176",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542410"
+    "migu_pid": "960620968",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/960620968",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542410",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960620968%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542410%22%7D%7D%7D"
   },
   {
     "date": "2025-12-01",
@@ -177,9 +189,10 @@
     "arsenal_score": 1.0,
     "opponent_score": 1.0,
     "outcome": "D",
-    "migu_pid": "960738059",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/960738059",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542399"
+    "migu_pid": "960822408",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/960822408",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542399",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960822408%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542399%22%7D%7D%7D"
   },
   {
     "date": "2025-12-04",
@@ -191,9 +204,10 @@
     "arsenal_score": 2.0,
     "opponent_score": 0.0,
     "outcome": "H",
-    "migu_pid": "960737773",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/960737773",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542390"
+    "migu_pid": "960919850",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/960919850",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542390",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960919850%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542390%22%7D%7D%7D"
   },
   {
     "date": "2025-12-06",
@@ -205,9 +219,10 @@
     "arsenal_score": 1.0,
     "opponent_score": 2.0,
     "outcome": "H",
-    "migu_pid": "960930256",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/960930256",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542380"
+    "migu_pid": "961005458",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/961005458",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542380",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961005458%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542380%22%7D%7D%7D"
   },
   {
     "date": "2025-12-14",
@@ -219,9 +234,10 @@
     "arsenal_score": 2.0,
     "opponent_score": 1.0,
     "outcome": "H",
-    "migu_pid": "961105264",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/961105264",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542371"
+    "migu_pid": "961170109",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/961170109",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542371",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961170109%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542371%22%7D%7D%7D"
   },
   {
     "date": "2025-12-21",
@@ -233,9 +249,10 @@
     "arsenal_score": 1.0,
     "opponent_score": 0.0,
     "outcome": "A",
-    "migu_pid": "961252122",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/961252122",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542358"
+    "migu_pid": "961314176",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/961314176",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542358",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961314176%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542358%22%7D%7D%7D"
   },
   {
     "date": "2025-12-27",
@@ -247,9 +264,10 @@
     "arsenal_score": 2.0,
     "opponent_score": 1.0,
     "outcome": "H",
-    "migu_pid": "961450261",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/961450261",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542351"
+    "migu_pid": "961573346",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/961573346",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542351",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961573346%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542351%22%7D%7D%7D"
   },
   {
     "date": "2025-12-31",
@@ -261,9 +279,10 @@
     "arsenal_score": 4.0,
     "opponent_score": 1.0,
     "outcome": "H",
-    "migu_pid": "961449864",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/961449864",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542341"
+    "migu_pid": "962044362",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/962044362",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542341",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962044362%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542341%22%7D%7D%7D"
   },
   {
     "date": "2026-01-04",
@@ -275,9 +294,10 @@
     "arsenal_score": 3.0,
     "opponent_score": 2.0,
     "outcome": "A",
-    "migu_pid": "962101023",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/962101023",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542331"
+    "migu_pid": "962119740",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/962119740",
+    "migu_live_url": "https://www.miguvideo.com/p/live/120000542331",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962119740%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542331%22%7D%7D%7D"
   },
   {
     "date": "2026-01-09",
@@ -285,10 +305,14 @@
     "opponent": "Liverpool",
     "is_home": true,
     "venue": "Emirates Stadium",
-    "status": "U",
+    "status": "C",
+    "arsenal_score": 0.0,
+    "opponent_score": 0.0,
+    "outcome": "D",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-01-18",
@@ -299,7 +323,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-01-26",
@@ -310,7 +335,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-01-31",
@@ -321,7 +347,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-02-07",
@@ -332,7 +359,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-02-13",
@@ -343,7 +371,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-02-23",
@@ -354,7 +383,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-03-02",
@@ -365,7 +395,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-03-05",
@@ -376,7 +407,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-03-14",
@@ -387,7 +419,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-03-21",
@@ -398,7 +431,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-04-11",
@@ -409,7 +443,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-04-18",
@@ -420,7 +455,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-04-25",
@@ -431,7 +467,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-05-02",
@@ -442,7 +479,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-05-09",
@@ -453,7 +491,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-05-17",
@@ -464,7 +503,8 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-05-24",
@@ -475,6 +515,7 @@
     "status": "U",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": ""
+    "migu_live_url": "",
+    "scheme_url": ""
   }
 ]

@@ -1,0 +1,67 @@
+name: 每日更新比赛数据 (Data Factory)
+
+on:
+  schedule:
+    # --- 🟢 日常巡检 (低频保活) ---
+    # 北京时间: 08:00, 14:00, 17:00, 20:00
+    # UTC 时间: 00:00, 06:00, 09:00, 12:00
+    - cron: '0 0,6,9,12 * * *'
+
+    # --- 🔴 疯狂追更模式 (高频抓取) ---
+    # 场景：针对凌晨 0-5 点结束的比赛，在清晨高频尝试抓取 PID
+    # 频率：每 15 分钟一次 (私有仓库安全频率)
+    
+    # 时段 1: 北京时间 05:00 - 07:45 (UTC 前一天 21:00 - 23:45)
+    - cron: '*/15 21-23 * * *'
+    
+    # 时段 2: 北京时间 08:00 - 10:45 (UTC 当天 00:00 - 02:45)
+    - cron: '*/15 0-2 * * *'
+
+  # 允许手动强制触发
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  run-data-factory:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai # 设定为北京时间
+
+    steps:
+      - name: 1. 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 2. 设置 Python 环境
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+
+      - name: 3. 安装依赖
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: 4. 运行智能数据工厂
+        # 传递 RUN_MODE 环境变量
+        run: |
+          chmod +x update_all.sh
+          # 如果是定时触发，使用智能模式；如果是手动触发，强制全量运行
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            export RUN_MODE="smart"
+          else
+            export RUN_MODE="force"
+          fi
+          ./update_all.sh
+
+      - name: 5. 提交结果
+        run: |
+          git config --global user.name 'RedLens Bot'
+          git config --global user.email 'bot@redlens.app'
+          
+          # 检查是否有数据变化
+          git add matches_with_videos.json
+          # 如果有变化则提交，无变化则跳过 (避免报错)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: match data $(date +'%Y-%m-%d %H:%M')" && git push)

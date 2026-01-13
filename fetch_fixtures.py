@@ -12,18 +12,16 @@ Data Factory Module for Arsenal Fixtures
 """
 
 import json
-import asyncio
 import logging
 from datetime import datetime
 from typing import List, Dict, Optional
 import pytz
-from playwright.async_api import async_playwright, TimeoutError as PlaywrightTimeoutError
+import requests
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 # ===== 配置区 Configuration =====
 OUTPUT_FILE = "matches.json"
 ARSENAL_TEAM_ID = 1  # Arsenal's team ID on Premier League website
-TIMEOUT_MS = 30000  # 30 seconds timeout
 TARGET_TIMEZONE = pytz.timezone('Asia/Shanghai')  # 北京时间 UTC+8
 UK_TIMEZONE = pytz.timezone('Europe/London')
 
@@ -45,152 +43,58 @@ class FixtureFetcher:
     @retry(
         stop=stop_after_attempt(3),
         wait=wait_exponential(multiplier=1, min=2, max=10),
-        retry=retry_if_exception_type((PlaywrightTimeoutError, Exception)),
+        retry=retry_if_exception_type(Exception),
         reraise=True
     )
-    async def fetch_from_premier_league(self) -> List[Dict]:
+    def fetch_from_premier_league(self) -> List[Dict]:
         """
         方法一：从英超官网 API 抓取数据（推荐）
         优势：结构化 JSON，稳定性高，无需复杂选择器
         """
         logger.info("🎯 尝试从英超官网抓取数据...")
         
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
-            context = await browser.new_context(
-                user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-            )
-            page = await context.new_page()
+        try:
+            # 英超官网的赛程 API endpoint
+            # compSeasons: 777 是 2025/26 賽季 ID
+            # statuses: C=已完赛, U=未开始, L=进行中
+            api_url = f"https://footballapi.pulselive.com/football/fixtures?comps=1&teams={ARSENAL_TEAM_ID}&compSeasons=777&page=0&pageSize=100&sort=asc&statuses=C,U,L"
             
-            try:
-                # 英超官网的赛程 API endpoint
-                # compSeasons: 777 是 2025/26 賽季 ID (從之前的調試信息中獲得)
-                # statuses: C=已完赛, U=未开始, L=进行中
-                api_url = f"https://footballapi.pulselive.com/football/fixtures?comps=1&teams={ARSENAL_TEAM_ID}&compSeasons=777&page=0&pageSize=100&sort=asc&statuses=C,U,L"
-                
-                logger.info(f"📡 请求 API: {api_url}")
-                response = await page.goto(api_url, wait_until='networkidle', timeout=TIMEOUT_MS)
-                
-                if response.status != 200:
-                    raise Exception(f"API 返回状态码: {response.status}")
-                
-                # 解析 JSON 响应
-                data = await response.json()
-                fixtures = data.get('content', [])
-                
-                logger.info(f"✅ 成功获取 {len(fixtures)} 场比赛")
-                
-                # 調試：打印原始數據結構
-                if fixtures and len(fixtures) > 0:
-                    logger.info(f"📋 示例數據結構: {json.dumps(fixtures[0], indent=2, ensure_ascii=False)[:500]}...")
-                
-                matches = []
-                for fixture in fixtures:
-                    match = self._parse_premier_league_fixture(fixture)
-                    if match:
-                        matches.append(match)
-                
-                return matches
-                
-            except Exception as e:
-                logger.error(f"❌ 英超官网抓取失败: {str(e)}")
-                raise
-            finally:
-                await browser.close()
+            logger.info(f"📡 请求 API: {api_url}")
+            
+            # 使用 requests 直接请求
+            response = requests.get(
+                api_url,
+                headers={
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                },
+                timeout=30
+            )
+            
+            if response.status_code != 200:
+                raise Exception(f"API 返回状态码: {response.status_code}")
+            
+            # 解析 JSON 响应
+            data = response.json()
+            fixtures = data.get('content', [])
+            
+            logger.info(f"✅ 成功获取 {len(fixtures)} 场比赛")
+            
+            # 調試：打印原始數據結構
+            if fixtures and len(fixtures) > 0:
+                logger.info(f"📋 示例數據結構: {json.dumps(fixtures[0], indent=2, ensure_ascii=False)[:500]}...")
+            
+            matches = []
+            for fixture in fixtures:
+                match = self._parse_premier_league_fixture(fixture)
+                if match:
+                    matches.append(match)
+            
+            return matches
+            
+        except Exception as e:
+            logger.error(f"❌ 英超官网抓取失败: {str(e)}")
+            raise
     
-    @retry(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=2, max=10),
-        retry=retry_if_exception_type((PlaywrightTimeoutError, Exception)),
-        reraise=True
-    )
-    async def fetch_from_arsenal_website(self) -> List[Dict]:
-        """
-        方法二：从阿森纳官网抓取（备用方案）
-        优势：官方数据，更新及时
-        """
-        logger.info("🎯 尝试从阿森纳官网抓取数据...")
-        
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
-            context = await browser.new_context(
-                user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-            )
-            page = await context.new_page()
-            
-            try:
-                url = "https://www.arsenal.com/fixtures"
-                logger.info(f"📡 访问页面: {url}")
-                
-                await page.goto(url, wait_until='domcontentloaded', timeout=TIMEOUT_MS)
-                
-                # 等待页面加载完成
-                await asyncio.sleep(3)
-                
-                # 使用正確的選擇器抓取數據
-                matches = await page.evaluate("""
-                    () => {
-                        const fixtures = [];
-                        const items = document.querySelectorAll('.fixture-teaser');
-                        
-                        items.forEach(item => {
-                            try {
-                                // 提取時間信息
-                                const timeEl = item.querySelector('time');
-                                const datetime = timeEl ? timeEl.getAttribute('datetime') : null;
-                                const timeText = timeEl ? timeEl.textContent.trim() : null;
-                                
-                                // 提取對手信息
-                                const teamsDiv = item.querySelector('.fixture-teaser__teams');
-                                const teamNames = teamsDiv ? teamsDiv.textContent.trim() : '';
-                                
-                                // 提取賽事類型
-                                const competitionEl = item.querySelector('.event-info__extra');
-                                const competition = competitionEl ? competitionEl.textContent.trim() : '';
-                                
-                                // 提取主客場信息和對手名稱
-                                const linkEl = item.querySelector('.fixture-teaser__link');
-                                const href = linkEl ? linkEl.getAttribute('href') : '';
-                                
-                                // 解析隊伍名稱
-                                const vsMatch = teamNames.match(/Arsenal\\s+v\\s+(.+)/i) || teamNames.match(/(.+)\\s+v\\s+Arsenal/i);
-                                const opponent = vsMatch ? vsMatch[1].trim() : '';
-                                const isHome = teamNames.toLowerCase().includes('arsenal v');
-                                
-                                if (datetime && opponent) {
-                                    fixtures.push({
-                                        datetime: datetime,
-                                        timeText: timeText,
-                                        opponent: opponent,
-                                        isHome: isHome,
-                                        competition: competition
-                                    });
-                                }
-                            } catch (e) {
-                                console.error('Parse error:', e);
-                            }
-                        });
-                        
-                        return fixtures;
-                    }
-                """)
-                
-                logger.info(f"✅ 成功获取 {len(matches)} 场比赛")
-                
-                # 标准化数据格式
-                normalized_matches = []
-                for match in matches:
-                    normalized = self._parse_arsenal_website_fixture(match)
-                    if normalized:
-                        normalized_matches.append(normalized)
-                
-                return normalized_matches
-                
-            except Exception as e:
-                logger.error(f"❌ 阿森纳官网抓取失败: {str(e)}")
-                raise
-            finally:
-                await browser.close()
     
     def _parse_premier_league_fixture(self, fixture: Dict) -> Optional[Dict]:
         """解析英超官网 API 返回的数据结构"""
@@ -266,47 +170,6 @@ class FixtureFetcher:
             logger.warning(f"⚠️ 解析比赛数据失败: {str(e)}")
             return None
     
-    def _parse_arsenal_website_fixture(self, fixture: Dict) -> Optional[Dict]:
-        """解析阿森纳官网返回的数据结构"""
-        try:
-            # 新格式：使用 datetime ISO 字符串
-            datetime_str = fixture.get('datetime', '')
-            
-            if not datetime_str:
-                return None
-            
-            # 解析 ISO 格式時間 (如 "2026-01-08T20:00:00Z")
-            try:
-                match_datetime = datetime.fromisoformat(datetime_str.replace('Z', '+00:00'))
-            except:
-                # 如果 ISO 解析失敗，嘗試使用舊方法
-                date_str = fixture.get('date', '')
-                time_str = fixture.get('time', 'TBC')
-                
-                if not date_str or time_str == 'TBC':
-                    return None
-                
-                datetime_str = f"{date_str} {time_str}"
-                match_datetime = self._parse_datetime(datetime_str)
-                
-                if not match_datetime:
-                    return None
-            
-            # 转换为北京时间
-            beijing_time = match_datetime.astimezone(TARGET_TIMEZONE)
-            
-            return {
-                'date': beijing_time.strftime('%Y-%m-%d'),
-                'time': beijing_time.strftime('%H:%M'),
-                'opponent': fixture.get('opponent', ''),
-                'is_home': fixture.get('isHome', True),
-                'venue': fixture.get('competition', 'TBC')
-            }
-            
-        except Exception as e:
-            logger.warning(f"⚠️ 解析比赛数据失败: {str(e)}")
-            return None
-    
     def _parse_datetime(self, date_str: str) -> Optional[datetime]:
         """
         智能日期解析器 - 支持多种格式
@@ -343,7 +206,7 @@ class FixtureFetcher:
         logger.warning(f"⚠️ 无法解析日期格式: {date_str}")
         return None
     
-    async def fetch(self) -> List[Dict]:
+    def fetch(self) -> List[Dict]:
         """
         核心方法：多数据源智能回退
         遵循 Fail-Fast 原则，优先使用最稳定的数据源
@@ -354,7 +217,7 @@ class FixtureFetcher:
         
         # 策略一：尝试英超官网 API（推荐）
         try:
-            matches = await self.fetch_from_premier_league()
+            matches = self.fetch_from_premier_league()
             if matches and len(matches) > 0:
                 logger.info("✅ 使用数据源：英超官网 API")
                 return matches
@@ -364,18 +227,6 @@ class FixtureFetcher:
         except Exception as e:
             logger.warning(f"⚠️ 英超官网不可用: {str(e)}")
             errors.append(f"英超官网: {str(e)}")
-        
-        # 策略二：回退到阿森纳官网
-        try:
-            matches = await self.fetch_from_arsenal_website()
-            if matches and len(matches) > 0:
-                logger.info("✅ 使用数据源：阿森纳官网")
-                return matches
-            else:
-                errors.append("阿森纳官网: 返回 0 場比賽")
-        except Exception as e:
-            logger.warning(f"⚠️ 阿森纳官网不可用: {str(e)}")
-            errors.append(f"阿森纳官网: {str(e)}")
         
         # 所有數據源都失敗
         logger.error(f"❌ 所有数据源均不可用")
@@ -431,14 +282,14 @@ class FixtureFetcher:
             raise
 
 
-async def main():
+def main():
     """
     主函数 - 极简执行流程
     体现 RedLens 的"手术刀"哲学：精准、高效、无冗余
     """
     try:
         fetcher = FixtureFetcher()
-        matches = await fetcher.fetch()
+        matches = fetcher.fetch()
         
         if not matches:
             logger.warning("⚠️ 未获取到任何比赛数据")
@@ -455,4 +306,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()
