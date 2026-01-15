@@ -1,309 +1,222 @@
 #!/usr/bin/env python3
 """
-RedLens 数据工厂 - 阿森纳赛程抓取模块
-Data Factory Module for Arsenal Fixtures
-
-功能：从英超官网或阿森纳官网抓取 2025/26 赛季完整赛程数据
-特性：
-  - 获取已完赛和未完赛的所有比赛（共 38 场）
-  - 已完赛比赛包含比分和结果信息
-  - 时间自动转换为北京时间（UTC+8）
-  - 幂等性、重试机制、多数据源回退
+RedLens 赛程抓取器 - 终极清洗版 (Table Parser v3)
+修复: 
+1. 误将 "日期-时间" (Jan 20 - 20:00) 识别为比分的问题
+2. 清理 "V", "Carabao Cup" 等残留字符
+3. 增加朴茨茅斯等中文队名映射支持预埋
 """
 
+import requests
+from bs4 import BeautifulSoup
 import json
 import logging
 from datetime import datetime
-from typing import List, Dict, Optional
-import pytz
-import requests
-from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+import re
 
-# ===== 配置区 Configuration =====
 OUTPUT_FILE = "matches.json"
-ARSENAL_TEAM_ID = 1  # Arsenal's team ID on Premier League website
-TARGET_TIMEZONE = pytz.timezone('Asia/Shanghai')  # 北京时间 UTC+8
-UK_TIMEZONE = pytz.timezone('Europe/London')
+SOURCE_URL = "https://www.arsenal.com/results-and-fixtures-list"
 
-# 日志配置
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s [%(levelname)s] %(message)s')
 logger = logging.getLogger(__name__)
 
-
-class FixtureFetcher:
-    """赛程抓取器 - 极简主义设计，专注核心逻辑"""
-    
-    def __init__(self):
-        self.matches = []
-    
-    @retry(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=2, max=10),
-        retry=retry_if_exception_type(Exception),
-        reraise=True
-    )
-    def fetch_from_premier_league(self) -> List[Dict]:
-        """
-        方法一：从英超官网 API 抓取数据（推荐）
-        优势：结构化 JSON，稳定性高，无需复杂选择器
-        """
-        logger.info("🎯 尝试从英超官网抓取数据...")
-        
-        try:
-            # 英超官网的赛程 API endpoint
-            # compSeasons: 777 是 2025/26 賽季 ID
-            # statuses: C=已完赛, U=未开始, L=进行中
-            api_url = f"https://footballapi.pulselive.com/football/fixtures?comps=1&teams={ARSENAL_TEAM_ID}&compSeasons=777&page=0&pageSize=100&sort=asc&statuses=C,U,L"
-            
-            logger.info(f"📡 请求 API: {api_url}")
-            
-            # 使用 requests 直接请求
-            response = requests.get(
-                api_url,
-                headers={
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-                },
-                timeout=30
-            )
-            
-            if response.status_code != 200:
-                raise Exception(f"API 返回状态码: {response.status_code}")
-            
-            # 解析 JSON 响应
-            data = response.json()
-            fixtures = data.get('content', [])
-            
-            logger.info(f"✅ 成功获取 {len(fixtures)} 场比赛")
-            
-            # 調試：打印原始數據結構
-            if fixtures and len(fixtures) > 0:
-                logger.info(f"📋 示例數據結構: {json.dumps(fixtures[0], indent=2, ensure_ascii=False)[:500]}...")
-            
-            matches = []
-            for fixture in fixtures:
-                match = self._parse_premier_league_fixture(fixture)
-                if match:
-                    matches.append(match)
-            
-            return matches
-            
-        except Exception as e:
-            logger.error(f"❌ 英超官网抓取失败: {str(e)}")
-            raise
-    
-    
-    def _parse_premier_league_fixture(self, fixture: Dict) -> Optional[Dict]:
-        """解析英超官网 API 返回的数据结构"""
-        try:
-            # 檢查賽季：只處理 2025/26 賽季
-            gameweek = fixture.get('gameweek', {})
-            comp_season = gameweek.get('compSeason', {})
-            season_label = comp_season.get('label', '')
-            
-            if season_label != '2025/26':
-                return None  # 跳過其他賽季
-            
-            # 提取比赛时间
-            kickoff = fixture.get('kickoff', {})
-            date_str = kickoff.get('label')  # 格式如 "Sat 15 Jan 15:00"
-            
-            if not date_str or date_str == "TBC":
-                return None
-            
-            # 解析日期时间
-            match_datetime = self._parse_datetime(date_str)
-            if not match_datetime:
-                return None
-            
-            # 转换为北京时间
-            beijing_time = match_datetime.astimezone(TARGET_TIMEZONE)
-            
-            # 提取主客队信息
-            teams = fixture.get('teams', [])
-            home_team = teams[0] if len(teams) > 0 else {}
-            away_team = teams[1] if len(teams) > 1 else {}
-            
-            # 判断阿森纳是主队还是客队
-            is_arsenal_home = home_team.get('team', {}).get('id') == ARSENAL_TEAM_ID
-            opponent = away_team.get('team', {}).get('name') if is_arsenal_home else home_team.get('team', {}).get('name')
-            
-            # 提取场馆信息
-            venue_info = fixture.get('ground', {})
-            venue = venue_info.get('name', 'TBC')
-            
-            # 提取比賽狀態和比分
-            status = fixture.get('status', 'U')  # C=已完賽, U=未開始, L=進行中
-            outcome = fixture.get('outcome', 'TBC')
-            
-            result = {
-                'date': beijing_time.strftime('%Y-%m-%d'),
-                'time': beijing_time.strftime('%H:%M'),
-                'opponent': opponent,
-                'is_home': is_arsenal_home,
-                'venue': venue,
-                'status': status
-            }
-            
-            # 如果比賽已完賽，添加比分信息
-            if status == 'C':
-                teams = fixture.get('teams', [])
-                home_score = teams[0].get('score') if len(teams) > 0 else None
-                away_score = teams[1].get('score') if len(teams) > 1 else None
-                
-                if home_score is not None and away_score is not None:
-                    if is_arsenal_home:
-                        result['arsenal_score'] = home_score
-                        result['opponent_score'] = away_score
-                    else:
-                        result['arsenal_score'] = away_score
-                        result['opponent_score'] = home_score
-                    
-                    result['outcome'] = outcome  # W=勝, D=平, L=負
-            
-            return result
-            
-        except Exception as e:
-            logger.warning(f"⚠️ 解析比赛数据失败: {str(e)}")
-            return None
-    
-    def _parse_datetime(self, date_str: str) -> Optional[datetime]:
-        """
-        智能日期解析器 - 支持多种格式
-        示例：
-        - "Sat 15 Jan 15:00"
-        - "Thu 8 Jan 2026, 20:00 GMT"
-        - "15/01/2025 15:00"
-        - "2025-01-15 15:00"
-        """
-        # 清理日期字符串，移除時區標記
-        date_str_clean = date_str.replace(' GMT', '').replace(' BST', '').replace(',', '').strip()
-        
-        formats = [
-            '%a %d %b %Y %H:%M',   # Thu 8 Jan 2026 20:00
-            '%a %d %b %H:%M',      # Sat 15 Jan 15:00
-            '%d/%m/%Y %H:%M',      # 15/01/2025 15:00
-            '%Y-%m-%d %H:%M',      # 2025-01-15 15:00
-            '%d %B %Y %H:%M',      # 15 January 2025 15:00
-            '%d %b %Y %H:%M',      # 8 Jan 2026 20:00
-        ]
-        
-        for fmt in formats:
-            try:
-                dt = datetime.strptime(date_str_clean, fmt)
-                # 如果没有年份信息，默认为当前年份
-                if dt.year == 1900:
-                    dt = dt.replace(year=datetime.now().year)
-                # 假设原始时间为英国时间
-                dt_uk = UK_TIMEZONE.localize(dt)
-                return dt_uk
-            except ValueError:
-                continue
-        
-        logger.warning(f"⚠️ 无法解析日期格式: {date_str}")
-        return None
-    
-    def fetch(self) -> List[Dict]:
-        """
-        核心方法：多数据源智能回退
-        遵循 Fail-Fast 原则，优先使用最稳定的数据源
-        """
-        logger.info("🚀 RedLens 数据工厂启动...")
-        
-        errors = []
-        
-        # 策略一：尝试英超官网 API（推荐）
-        try:
-            matches = self.fetch_from_premier_league()
-            if matches and len(matches) > 0:
-                logger.info("✅ 使用数据源：英超官网 API")
-                return matches
-            else:
-                logger.warning(f"⚠️ 英超官网返回 0 場比賽，可能是賽季參數問題")
-                errors.append("英超官网: 返回 0 場比賽")
-        except Exception as e:
-            logger.warning(f"⚠️ 英超官网不可用: {str(e)}")
-            errors.append(f"英超官网: {str(e)}")
-        
-        # 所有數據源都失敗
-        logger.error(f"❌ 所有数据源均不可用")
-        logger.error(f"📋 錯誤摘要:")
-        for i, error in enumerate(errors, 1):
-            logger.error(f"   {i}. {error}")
-        
-        raise Exception("所有数据源均失败，请检查网络连接或稍后重试")
-        
-        return []
-    
-    def save_to_json(self, matches: List[Dict]):
-        """
-        保存为 JSON - 幂等性设计
-        多次运行结果一致，确保数据完整性
-        """
-        try:
-            # 按日期排序
-            matches_sorted = sorted(matches, key=lambda x: (x['date'], x['time']))
-            
-            with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-                json.dump(matches_sorted, f, ensure_ascii=False, indent=2)
-            
-            logger.info(f"💾 数据已保存至 {OUTPUT_FILE}")
-            logger.info(f"📊 共 {len(matches_sorted)} 场比赛")
-            
-            # 統計已完賽和未完賽比賽
-            completed = sum(1 for m in matches_sorted if m.get('status') == 'C')
-            upcoming = sum(1 for m in matches_sorted if m.get('status') == 'U')
-            
-            if completed > 0:
-                logger.info(f"✅ 已完賽：{completed} 場")
-                # 統計戰績
-                wins = sum(1 for m in matches_sorted if m.get('outcome') in ['H', 'A'])
-                draws = sum(1 for m in matches_sorted if m.get('outcome') == 'D')
-                losses = completed - wins - draws
-                points = wins * 3 + draws
-                logger.info(f"   戰績：{wins}勝 {draws}平 {losses}負，積分 {points}")
-            
-            if upcoming > 0:
-                logger.info(f"📅 未完賽：{upcoming} 場")
-            
-            # 打印预览
-            if matches_sorted:
-                first_match = matches_sorted[0]
-                logger.info("📅 賽季首場比賽:")
-                logger.info(f"   {first_match['date']} {first_match['time']} "
-                           f"{'主场 vs' if first_match['is_home'] else '客场 @'} "
-                           f"{first_match['opponent']}")
-        
-        except Exception as e:
-            logger.error(f"❌ 保存文件失败: {str(e)}")
-            raise
-
-
-def main():
+def parse_arsenal_date(date_text):
     """
-    主函数 - 极简执行流程
-    体现 RedLens 的"手术刀"哲学：精准、高效、无冗余
+    解析类似 "Wed Oct 1" 的日期，智能推断年份
     """
     try:
-        fetcher = FixtureFetcher()
-        matches = fetcher.fetch()
+        parts = date_text.strip().split()
+        if len(parts) < 2: return ""
         
-        if not matches:
-            logger.warning("⚠️ 未获取到任何比赛数据")
-            return
+        month_str = parts[-2]
+        day_str = parts[-1]
         
-        fetcher.save_to_json(matches)
-        logger.info("✅ 数据工厂任务完成")
+        now = datetime.now()
+        month_num = datetime.strptime(month_str, "%b").month
         
-    except KeyboardInterrupt:
-        logger.info("⚠️ 用户中断")
-    except Exception as e:
-        logger.error(f"❌ 执行失败: {str(e)}")
-        raise
+        # 赛季跨年逻辑：8-12月是2025，1-7月是2026
+        if month_num >= 8:
+            year = 2025
+        else:
+            year = 2026
 
+        dt = datetime.strptime(f"{year} {month_str} {day_str}", "%Y %b %d")
+        return dt.strftime('%Y-%m-%d')
+    except Exception:
+        return ""
+
+def fetch_arsenal_fixtures():
+    logger.info("🚀 启动赛程抓取 (Smart Cleaner Mode)...")
+    
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+    }
+    
+    try:
+        response = requests.get(SOURCE_URL, headers=headers, timeout=15)
+        soup = BeautifulSoup(response.content, 'html.parser')
+        matches = []
+        
+        rows = soup.find_all('tr')
+        logger.info(f"🔍 扫描到 {len(rows)} 行数据，开始深度清洗...")
+
+        for row in rows:
+            # 获取原始文本
+            original_text = row.get_text(" ", strip=True)
+            
+            # 必须包含 Arsenal
+            if "Arsenal" not in original_text: continue
+            
+            # --- 步骤 1: 提取并移除 日期/时间 (关键修复) ---
+            # 模式: Mon Jan 14 - 20:00
+            # 我们先找到这个模式，提取数据，然后把它从文本里删掉！防止干扰比分
+            
+            date_str = ""
+            time_str = "00:00"
+            
+            # 匹配日期+时间段 (Wed Jan 14 - 20:00)
+            # 正则解释: 星期+空格+月+空格+日+空格+横杠+空格+时间
+            datetime_pattern = r'([A-Za-z]{3}\s+[A-Za-z]{3}\s+\d{1,2})\s*-\s*(\d{1,2}:\d{2})'
+            dt_match = re.search(datetime_pattern, original_text)
+            
+            clean_text = original_text # 用于后续处理的文本
+            
+            if dt_match:
+                # 提取
+                raw_date = dt_match.group(1) # Wed Jan 14
+                time_str = dt_match.group(2) # 20:00
+                date_str = parse_arsenal_date(raw_date)
+                
+                # 【关键】从文本中移除这段日期时间字符串
+                clean_text = clean_text.replace(dt_match.group(0), "")
+            else:
+                # 兜底：如果找不到完整的时间组合，尝试单独找日期
+                date_only_match = re.search(r'([A-Za-z]{3}\s+[A-Za-z]{3}\s+\d{1,2})', original_text)
+                if date_only_match:
+                    date_str = parse_arsenal_date(date_only_match.group(1))
+                    clean_text = clean_text.replace(date_only_match.group(0), "")
+
+            if not date_str: continue
+
+            # --- 步骤 2: 提取赛事 ---
+            competition = "Unknown"
+            # 定义映射关系，不仅用于提取，也用于后续清理
+            comp_keywords = {
+                "Champions League": "UEFA Champions League",
+                "Premier League": "Premier League",
+                "FA Cup": "FA Cup",
+                "League Cup": "League Cup",
+                "Carabao Cup": "League Cup", # 别名
+                "Friendly": "Friendly"
+            }
+            
+            for k, v in comp_keywords.items():
+                if k in original_text:
+                    competition = v
+                    break
+            
+            if competition == "Unknown" and "U21" not in original_text:
+                continue
+
+            # --- 步骤 3: 提取比分 (在去除了时间之后) ---
+            # 此时 clean_text 里已经没有 "20 - 20:00" 这种干扰项了
+            status = 'U'
+            score = ""
+            # 找类似 "2 - 0" 或 "2-0"
+            score_match = re.search(r'(\d+)\s*-\s*(\d+)', clean_text)
+            
+            # 只有当日期是今天或过去，才信任比分 (防止未来日期的误判)
+            is_past = False
+            try:
+                match_date_obj = datetime.strptime(date_str, "%Y-%m-%d")
+                if match_date_obj.date() <= datetime.now().date():
+                    is_past = True
+            except: pass
+
+            if score_match and is_past:
+                status = 'C'
+                score = score_match.group(0)
+                # 从文本中移除比分，方便后续提取对手
+                clean_text = clean_text.replace(score, "")
+
+            # --- 步骤 4: 提取对手 (大扫除) ---
+            # 移除所有干扰词
+            remove_list = [
+                competition, "Arsenal", "Home", "Away", 
+                "Carabao Cup", "League Cup", "Premier League", "Champions League", "UEFA", "FA Cup",
+                "Mens", "Women", "Tickets", "Report", "Highlights",
+                "(H)", "(A)", " V ", " v ", " vs " # 移除 " V "
+            ]
+            
+            opponent_text = clean_text
+            for term in remove_list:
+                # 使用不区分大小写的替换
+                pattern = re.compile(re.escape(term), re.IGNORECASE)
+                opponent_text = pattern.sub("", opponent_text)
+            
+            # 移除多余符号
+            opponent_text = opponent_text.replace("-", "").strip()
+            # 移除连续空格
+            opponent = " ".join(opponent_text.split())
+            
+            # 最终检查: 如果剩下一个单字母 "V"，也去掉
+            if opponent.lower() == "v": continue
+            if len(opponent) < 2: continue
+
+            # --- 步骤 5: 主客场 ---
+            # 简单的逻辑：如果原始文本里 Arsenal 在对手前面?
+            # 或者看是否有 (H) / (A) 标记，或者 Home/Away
+            is_home = True
+            if "(A)" in original_text or "Away" in original_text:
+                is_home = False
+            elif "(H)" in original_text or "Home" in original_text:
+                is_home = True
+            else:
+                # 位置判断法
+                # 原始文本通常是: Date Time Home v Away
+                # 如果 Arsenal 的 index 小于 Opponent 的 index -> 主场
+                try:
+                    idx_ars = original_text.find("Arsenal")
+                    idx_opp = original_text.find(opponent)
+                    if idx_ars > -1 and idx_opp > -1:
+                        if idx_ars > idx_opp:
+                            is_home = False
+                except: pass
+
+            matches.append({
+                "date": date_str,
+                "time": time_str,
+                "opponent": opponent,
+                "competition": competition,
+                "is_home": is_home,
+                "status": status,
+                "score": score
+            })
+
+        # 去重
+        unique_matches = []
+        seen = set()
+        for m in matches:
+            key = f"{m['date']}_{m['opponent']}"
+            if key not in seen:
+                seen.add(key)
+                unique_matches.append(m)
+        
+        unique_matches.sort(key=lambda x: x['date'])
+        
+        logger.info(f"✅ 成功提取 {len(unique_matches)} 场比赛")
+        return unique_matches
+
+    except Exception as e:
+        logger.error(f"❌ 错误: {e}")
+        return []
 
 if __name__ == "__main__":
-    main()
+    data = fetch_arsenal_fixtures()
+    if data:
+        with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        
+        # 简单校验打印
+        for m in data[-5:]: # 打印最后5场看看未来赛程是否正常
+            logger.info(f"{m['date']} {m['opponent']} (Status: {m['status']})")

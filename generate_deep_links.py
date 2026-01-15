@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 """
-RedLens 数据工厂 - Deep Link 生成器
-为咪咕视频生成 App 跳转链接
+RedLens Deep Link Generator (修复版)
+功能: 
+1. 为已完赛且有录像的比赛生成 VOD Scheme (WORLDCUP_DETAIL + PID)
+2. 为未完赛的比赛生成 Live Scheme (WORLDCUP_DETAIL + MgdbID)
+3. 修复: 直播 Scheme 采用与 H5 抓包一致的 WORLDCUP_DETAIL 结构
 """
 
 import json
+import logging
 import urllib.parse
 import re
-import logging
-from typing import Dict, Optional
+
+# 配置
+INPUT_FILE = "matches_with_videos.json"
+OUTPUT_FILE = "matches_with_videos.json" # 覆写自身
 
 # 日志配置
 logging.basicConfig(
@@ -18,155 +24,100 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-INPUT_FILE = "matches_with_videos.json"
-OUTPUT_FILE = "matches_with_videos.json"
-
-
-def extract_room_id(live_url: str) -> Optional[str]:
+def generate_scheme(match):
     """
-    从 migu_live_url 中提取房间号 (mgdbID)
-    
-    Args:
-        live_url: 完整的直播间 URL，如 "https://www.miguvideo.com/p/live/120000542331"
-        
-    Returns:
-        房间号字符串，如 "120000542331"，提取失败则返回 None
+    核心逻辑: 
+    优先生成录像跳转 (PID)
+    其次生成直播跳转 (Live URL/MgdbID)
     """
-    if not live_url:
-        return None
     
-    # 使用正则提取 URL 末尾的数字
-    match = re.search(r'(\d+)$', live_url)
-    if match:
-        return match.group(1)
-    
-    return None
-
-
-def generate_scheme_url(pid: str, room_id: str) -> str:
-    """
-    生成咪咕视频 App 的 Deep Link
-    
-    Args:
-        pid: 录像内容 ID (contentID)
-        room_id: 直播间房间号 (mgdbID)
-        
-    Returns:
-        完整的 Scheme URL
-    """
-    if not pid or not room_id:
-        return ""
-    
-    # 构造 Action JSON
-    action = {
-        "type": "JUMP_INNER_NEW_PAGE",
-        "params": {
-            "frameID": "default-frame",
-            "pageID": "WORLDCUP_DETAIL",
-            "location": "h5_share",
-            "contentID": str(pid),
-            "extra": {
-                "mgdbID": str(room_id)
+    # --- 1. 尝试生成录像 Scheme (优先级最高) ---
+    pid = match.get('migu_pid', '')
+    if pid:
+        # 录像跳转 (WORLDCUP_DETAIL)
+        live_url = match.get('migu_live_url', '')
+        mgdb_id = ""
+        if live_url:
+            match_id = re.search(r'live/(\d+)', live_url)
+            if match_id:
+                mgdb_id = match_id.group(1)
+                
+        action_params = {
+            "type": "JUMP_INNER_NEW_PAGE",
+            "params": {
+                "frameID": "default-frame",
+                "pageID": "WORLDCUP_DETAIL",
+                "location": "h5_share",
+                "contentID": str(pid), # 录像 PID
+                "extra": {}
             }
         }
-    }
-    
-    # 序列化并进行 URL 编码
-    json_str = json.dumps(action, ensure_ascii=False)
-    encoded_str = urllib.parse.quote(json_str)
-    
-    return f"miguvideo://miguvideo?action={encoded_str}"
+        if mgdb_id:
+            action_params["params"]["extra"]["mgdbID"] = str(mgdb_id)
 
+        json_str = json.dumps(action_params)
+        encoded_json = urllib.parse.quote(json_str)
+        return f"miguvideo://miguvideo?action={encoded_json}", "VOD"
 
-def process_matches(input_file: str, output_file: str) -> None:
-    """
-    处理所有比赛数据，生成 Deep Link
+    # --- 2. 尝试生成直播 Scheme (优先级次之) ---
+    live_url = match.get('migu_live_url', '')
+    if live_url:
+        # 从 URL 中提取直播间 ID (mgdbId)
+        match_id = re.search(r'live/(\d+)', live_url)
+        if match_id:
+            mgdb_id = match_id.group(1)
+            
+            # 【核心修复】直播跳转也使用 WORLDCUP_DETAIL
+            # 根据抓包: ...share","extra":{"mgdbID":"..."}}}
+            action_params = {
+                "type": "JUMP_INNER_NEW_PAGE",
+                "params": {
+                    "frameID": "default-frame",
+                    "pageID": "WORLDCUP_DETAIL",  # 之前是 LIVE_DETAIL，现在改为 WORLDCUP_DETAIL
+                    "location": "h5_share",       # 补全 location
+                    "contentID": str(mgdb_id),    # 直播时，contentID 填 mgdbId
+                    "extra": {
+                        "mgdbID": str(mgdb_id)    # 关键：extra 里必须有 mgdbID
+                    }
+                }
+            }
+            json_str = json.dumps(action_params)
+            encoded_json = urllib.parse.quote(json_str)
+            return f"miguvideo://miguvideo?action={encoded_json}", "LIVE"
+            
+    return "", "NONE"
+
+def process_links():
+    logger.info("🔗 开始生成 Deep Links (修复版)...")
     
-    Args:
-        input_file: 输入 JSON 文件路径
-        output_file: 输出 JSON 文件路径
-    """
-    logger.info("🔗 开始生成 Deep Links...")
-    
-    # 读取数据
     try:
-        with open(input_file, 'r', encoding='utf-8') as f:
+        with open(INPUT_FILE, 'r', encoding='utf-8') as f:
             matches = json.load(f)
-        logger.info(f"📖 读取 {len(matches)} 场比赛数据")
-    except FileNotFoundError:
-        logger.error(f"❌ 文件不存在: {input_file}")
-        return
-    except json.JSONDecodeError as e:
-        logger.error(f"❌ JSON 解析失败: {e}")
-        return
-    
-    # 处理每场比赛
-    success_count = 0
-    skip_count = 0
-    error_count = 0
-    
-    for match in matches:
-        pid = match.get('migu_pid', '')
-        live_url = match.get('migu_live_url', '')
+            
+        updated_count = 0
+        live_count = 0
+        vod_count = 0
         
-        # 空值检查 - 未来的比赛可能没有这些数据
-        if not pid or not live_url:
-            match['scheme_url'] = ""
-            skip_count += 1
-            continue
-        
-        # 提取房间号
-        room_id = extract_room_id(live_url)
-        if not room_id:
-            logger.warning(f"⚠️ 无法提取房间号: {match.get('date')} vs {match.get('opponent')}")
-            match['scheme_url'] = ""
-            error_count += 1
-            continue
-        
-        # 生成 Scheme URL
-        scheme_url = generate_scheme_url(pid, room_id)
-        if scheme_url:
-            match['scheme_url'] = scheme_url
-            success_count += 1
-        else:
-            match['scheme_url'] = ""
-            error_count += 1
-    
-    # 保存结果
-    try:
-        with open(output_file, 'w', encoding='utf-8') as f:
+        for match in matches:
+            scheme, link_type = generate_scheme(match)
+            match['scheme_url'] = scheme
+            
+            if link_type != "NONE":
+                updated_count += 1
+                if link_type == "LIVE": live_count += 1
+                elif link_type == "VOD": vod_count += 1
+
+        # 保存回文件
+        with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
             json.dump(matches, f, ensure_ascii=False, indent=2)
-        
-        logger.info(f"💾 数据已保存至 {output_file}")
-        logger.info(f"")
-        logger.info(f"📊 处理结果:")
-        logger.info(f"   ✅ 成功生成: {success_count} 场")
-        logger.info(f"   ⏭️  跳过: {skip_count} 场 (未完赛或无录像)")
-        logger.info(f"   ❌ 失败: {error_count} 场")
-        
-        # 打印示例
-        if success_count > 0:
-            logger.info(f"")
-            logger.info(f"🔗 Deep Link 示例 (前3场):")
-            count = 0
-            for match in matches:
-                if match.get('scheme_url') and count < 3:
-                    logger.info(f"   {match.get('date')} vs {match.get('opponent')}")
-                    logger.info(f"   {match['scheme_url'][:100]}...")
-                    logger.info(f"")
-                    count += 1
-        
-        logger.info(f"✅ Deep Link 生成完成!")
+            
+        logger.info(f"✅ 处理完成!")
+        logger.info(f"   总链接数: {updated_count}")
+        logger.info(f"   📼 录像链接: {vod_count}")
+        logger.info(f"   🔴 直播链接: {live_count} (已采用抓包结构)")
         
     except Exception as e:
-        logger.error(f"❌ 保存文件失败: {e}")
-
-
-def main():
-    """主函数"""
-    process_matches(INPUT_FILE, OUTPUT_FILE)
-
+        logger.error(f"❌ 失败: {e}")
 
 if __name__ == "__main__":
-    main()
-
+    process_links()
