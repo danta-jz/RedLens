@@ -42,7 +42,7 @@ jobs:
       - name: 3. 安装依赖
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f DataFactory/requirements.txt ]; then pip install -r DataFactory/requirements.txt; fi
 
       - name: 4. 运行智能数据工厂
         # 传递 RUN_MODE 环境变量
