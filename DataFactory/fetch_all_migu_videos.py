@@ -188,20 +188,53 @@ class CompleteMiguFetcher:
                     elif len(parts) == 3: return int(parts[0]) * 3600 + int(parts[1]) * 60 + int(parts[2])
                     return 0
                 except: return 0
+            
+            def is_full_replay(video_name):
+                """判断是否是全场回放而非集锦"""
+                # 优先判定：包含"回放"但不包含"集锦"
+                has_replay = '回放' in video_name
+                has_highlight = '集锦' in video_name
+                return has_replay and not has_highlight
 
-            # 优先找 type=4 (全场回放)
+            # 策略1: 找类型=4的视频，进一步筛选出"全场回放"（排除集锦）
             type4_videos = [r for r in replay_list if r.get('type', '') == '4']
+            
+            # 策略1a: 优先找包含"回放"但不包含"集锦"的视频
+            full_replays = [v for v in type4_videos if is_full_replay(v.get('name', ''))]
+            if full_replays:
+                # 在全场回放中选最长的（通常是主讲解版本）
+                longest = max(full_replays, key=lambda x: duration_to_seconds(x.get('duration', '00:00')))
+                pid = longest.get('pID', '')
+                if pid:
+                    logger.debug(f"   ✅ 找到全场回放: {longest.get('name')} (PID: {pid})")
+                    return pid
+            
+            # 策略1b: 如果没有"回放"关键词的，就选type=4中时长最长的
+            # （这可能是老版本或其他格式的完整比赛）
             if type4_videos:
                 longest = max(type4_videos, key=lambda x: duration_to_seconds(x.get('duration', '00:00')))
-                return longest.get('pID', '')
+                # 只有在时长超过1小时才认为是完整比赛，否则可能是集锦
+                duration_sec = duration_to_seconds(longest.get('duration', '00:00'))
+                if duration_sec > 3600:
+                    pid = longest.get('pID', '')
+                    if pid:
+                        logger.debug(f"   ✅ 找到全场回放(无关键词): {longest.get('name')} (PID: {pid})")
+                        return pid
             
-            # 兜底
+            # 兜底: 从所有视频中找最长的完整比赛
             if replay_list:
                 longest = max(replay_list, key=lambda x: duration_to_seconds(x.get('duration', '00:00')))
-                if duration_to_seconds(longest.get('duration', '00:00')) > 3600:
-                     return longest.get('pID', '')
+                duration_sec = duration_to_seconds(longest.get('duration', '00:00'))
+                if duration_sec > 3600:  # 至少1小时
+                    pid = longest.get('pID', '')
+                    if pid:
+                        logger.debug(f"   ⚠️ 兜底选择: {longest.get('name')} (PID: {pid})")
+                        return pid
+            
             return None
-        except: return None
+        except Exception as e:
+            logger.warning(f"获取全场回放失败: {e}")
+            return None
 
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=5), retry=retry_if_exception_type(Exception), reraise=False)
     def fetch_api(self, date_str: str, comp_id: str) -> Optional[Dict]:
@@ -241,12 +274,16 @@ class CompleteMiguFetcher:
             is_finished = match_status in ['2', '3']
             
             # === 核心数据提取 ===
-            pid = match.get('pID', '') # 录像ID
+            pid = match.get('pID', '') # 录像ID (可能不准，API可能返回集锦)
             mgdb_id = match.get('mgdbId', '') # 直播间ID (关键!)
             
-            # 如果是完赛且没有PID，尝试深度抓取
-            if is_finished and not pid and mgdb_id:
-                pid = self.fetch_full_match_replay(mgdb_id)
+            # 【关键修改】对于已完赛的比赛，深度抓取并验证PID
+            # 这是为了确保我们获取全场回放而非集锦
+            if is_finished and mgdb_id:
+                verified_pid = self.fetch_full_match_replay(mgdb_id)
+                if verified_pid:
+                    pid = verified_pid  # 使用验证后的PID
+                # 如果深度抓取没有找到，保持原有的 pid（可能是空或集锦）
 
             try: formatted_date = datetime.strptime(date_key, '%Y%m%d').strftime('%Y-%m-%d')
             except: formatted_date = date_key
@@ -342,6 +379,21 @@ class CompleteMiguFetcher:
                 merged_map[f"{m['date']}_{m['opponent']}"] = m
                 
             final_list = sorted(merged_map.values(), key=lambda x: x['date'])
+            
+            # 【手動修正】已知錯誤的 PID 映射 - 某些比賽的 API 返回錯誤 PID
+            pid_corrections = {
+                ('2026-01-11', '朴茨茅斯'): '962347145',  # Portsmouth FA Cup - 原 PID 不存在
+            }
+            
+            # 應用修正
+            for match in final_list:
+                key = (match.get('date'), match.get('opponent'))
+                if key in pid_corrections:
+                    correct_pid = pid_corrections[key]
+                    if match.get('pid') and match.get('pid') != correct_pid:
+                        logger.info(f"🔧 修正: {key[0]} {key[1]} PID: {match.get('pid')} → {correct_pid}")
+                        match['pid'] = correct_pid
+                        match['detail_url'] = f"https://www.miguvideo.com/p/detail/{correct_pid}"
 
             with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
                 json.dump(final_list, f, ensure_ascii=False, indent=2)
