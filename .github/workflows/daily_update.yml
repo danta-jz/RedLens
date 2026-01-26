@@ -56,18 +56,18 @@ jobs:
           fi
           ./update_all.sh
 
-          - name: 5. 提交并推送结果
-          run: |
-            git config --global user.name 'RedLens Bot'
-            git config --global user.email 'danta-jz@users.noreply.github.com'
+      - name: 5. 提交并推送结果
+        run: |
+          git config --global user.name 'RedLens Bot'
+          git config --global user.email 'danta-jz@users.noreply.github.com'
             
-            # 🟢 关键：先添加变动的文件到暂存区
-            git add matches.json migu_videos_complete.json matches_with_videos.json
+          # 🟢 关键：先添加变动的文件到暂存区
+          git add matches.json migu_videos_complete.json matches_with_videos.json
             
-            # 检查是否有真正的内容变动，防止空提交报错
-            if git diff --staged --quiet; then
-              echo "没有发现数据变动，跳过提交。"
-            else
-              git commit -m "自动更新赛程数据: $(date +'%Y-%m-%d %H:%M:%S')"
-              git push
-            fi
+          # 检查是否有真正的内容变动，防止空提交报错
+          if git diff --staged --quiet; then
+            echo "没有发现数据变动，跳过提交。"
+          else
+            git commit -m "自动更新赛程数据: $(date +'%Y-%m-%d %H:%M:%S')"
+            git push
+          fi
