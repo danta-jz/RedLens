@@ -7,7 +7,7 @@ struct HomeView: View {
     
     // 状态管理
     @State private var showSpoilerAlert: Bool = false
-    @State private var showNoVideoAlert: Bool = false // 新增：无录像提示
+    // 删除了 showNoVideoAlert，因为我们假装所有视频都有源
     @State private var urlToOpen: URL?
     
     @Environment(\.openURL) var openURL
@@ -66,16 +66,11 @@ struct HomeView: View {
             if showSpoilerAlert {
                 SpoilerAlertView(onConfirm: {
                     showSpoilerAlert = false
+                    // 确认后尝试跳转。如果URL是空的（欧冠暂无源的情况），这里什么都不会发生
                     if let url = urlToOpen { openURL(url) }
                 }, onCancel: { showSpoilerAlert = false })
                 .zIndex(100)
             }
-        }
-        // --- 系统弹窗：无录像提示 ---
-        .alert("暂无视频源", isPresented: $showNoVideoAlert) {
-            Button("知道了", role: .cancel) { }
-        } message: {
-            Text("本场比赛暂未收录直播或录像链接。\n(如：联赛杯/欧冠/友谊赛等)")
         }
         .onAppear { setupSmartDefaults() }
     }
@@ -106,26 +101,22 @@ struct HomeView: View {
     
     // 统一处理点击逻辑
     func handleAction(for match: Match) {
-        // 1. 如果没有链接，直接弹提示
-        if !match.hasAction {
-            self.showNoVideoAlert = true
-            return
-        }
-        
-        guard let url = URL(string: match.schemeUrl) else { return }
-        
-        // 2. 如果已完赛，先弹防剧透
+        // 1. 如果已完赛，无论是否有链接，先假装有，弹防剧透
         if match.status == "C" {
-            self.urlToOpen = url
+            // 这里可能解析出 nil (如果 schemeUrl 为空)，但这没关系
+            // 我们依然把 nil 赋给 urlToOpen，并弹窗
+            self.urlToOpen = URL(string: match.schemeUrl)
             withAnimation { self.showSpoilerAlert = true }
         } else {
-            // 3. 直播直接跳
-            openURL(url)
+            // 2. 直播（未完赛），如果没有链接，点击就静默失败（或者你也可以弹个提示）
+            if let url = URL(string: match.schemeUrl) {
+                openURL(url)
+            }
         }
     }
 }
 
-// MARK: - 大卡片 (支持"暂无录像"状态)
+// MARK: - 大卡片
 struct HeroMatchCard: View {
     let match: Match
     let isPast: Bool
@@ -136,23 +127,13 @@ struct HeroMatchCard: View {
             RoundedRectangle(cornerRadius: 24).fill(Color.darkCardBg)
             VStack {
                 HStack {
-                    // 左上角标签逻辑
-                    if !match.hasAction {
-                        // 无链接状态
-                        Label("暂无录像", systemImage: "video.slash.fill")
-                            .font(.caption.bold())
-                            .padding(.horizontal, 10).padding(.vertical, 6)
-                            .background(Color.white.opacity(0.1)) // 灰色背景
-                            .foregroundColor(.gray)
-                            .cornerRadius(8)
-                    } else if isPast {
-                        // 有录像
+                    // ⚠️ 修改点：删除了 match.hasAction 的判断，统一认为有录像
+                    if isPast {
                         Label("全场回放", systemImage: "play.circle.fill")
                             .font(.caption.bold())
                             .padding(.horizontal, 10).padding(.vertical, 6)
                             .background(Color.arsenalRed).foregroundColor(.white).cornerRadius(8)
                     } else {
-                        // 直播
                         Label("即将开始", systemImage: "timer")
                             .font(.caption.bold())
                             .padding(.horizontal, 10).padding(.vertical, 6)
@@ -206,32 +187,20 @@ struct HeroMatchCard: View {
                 Button(action: action) {
                     HStack {
                         VStack(alignment: .leading) {
-                            if !match.hasAction {
-                                Text("NO VIDEO AVAILABLE").font(.system(size: 10, weight: .bold)).opacity(0.6)
-                                Text("暂无视频源").font(.title3.bold()).opacity(0.6)
-                            } else {
-                                Text(isPast ? "FULL MATCH REPLAY" : "LIVE BROADCAST")
-                                    .font(.system(size: 10, weight: .bold)).opacity(0.8)
-                                Text(isPast ? "点击播放 · 无剧透" : "进入直播间")
-                                    .font(.title3.bold())
-                            }
+                            // ⚠️ 修改点：统一文案，不再显示 "NO VIDEO"
+                            Text(isPast ? "FULL MATCH REPLAY" : "LIVE BROADCAST")
+                                .font(.system(size: 10, weight: .bold)).opacity(0.8)
+                            Text(isPast ? "点击播放 · 无剧透" : "进入直播间")
+                                .font(.title3.bold())
                         }
                         Spacer()
-                        if match.hasAction {
-                            Image(systemName: "arrow.right").font(.title2)
-                        }
+                        Image(systemName: "arrow.right").font(.title2)
                     }
                     .foregroundColor(.white).padding()
-                    .background(
-                        // 如果没链接，按钮变灰
-                        match.hasAction ?
-                        LinearGradient(gradient: Gradient(colors: [Color.arsenalRed, Color.arsenalRed.opacity(0.8)]), startPoint: .leading, endPoint: .trailing) :
-                        LinearGradient(gradient: Gradient(colors: [Color.gray.opacity(0.3), Color.gray.opacity(0.3)]), startPoint: .leading, endPoint: .trailing)
-                    )
+                    .background(LinearGradient(gradient: Gradient(colors: [Color.arsenalRed, Color.arsenalRed.opacity(0.8)]), startPoint: .leading, endPoint: .trailing))
                     .cornerRadius(16)
                 }
                 .padding(20)
-                .disabled(false) // 保持按钮可点，为了弹出"无视频"提示
             }
         }
         .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
@@ -243,7 +212,7 @@ struct HeroMatchCard: View {
     }
 }
 
-// 列表行保持不变
+// 列表行
 struct MatchListRow: View {
     let match: Match
     var body: some View {

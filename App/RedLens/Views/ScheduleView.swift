@@ -4,9 +4,8 @@ struct ScheduleView: View {
     @AppStorage("showScores") private var showScores: Bool = true
     var allMatches: [Match]
     
-    // 状态管理 (用于处理跳转和弹窗)
+    // 状态管理
     @State private var showSpoilerAlert: Bool = false
-    @State private var showNoVideoAlert: Bool = false
     @State private var urlToOpen: URL?
     
     @Environment(\.openURL) var openURL
@@ -26,13 +25,12 @@ struct ScheduleView: View {
                             }.padding().background(Color.backgroundGray.opacity(0.95))
                         ) {
                             ForEach(allMatches) { match in
-                                // 将每一行变成一个按钮
                                 Button(action: {
                                     handleAction(for: match)
                                 }) {
                                     ScheduleRow(match: match, showScore: showScores)
                                 }
-                                .buttonStyle(PlainButtonStyle()) // 去掉点击时的灰色背景闪烁
+                                .buttonStyle(PlainButtonStyle())
                                 .id(match.id)
                             }
                         }
@@ -55,36 +53,25 @@ struct ScheduleView: View {
             if showSpoilerAlert {
                 SpoilerAlertView(onConfirm: {
                     showSpoilerAlert = false
+                    // 尝试跳转。如果URL为空，静默失败
                     if let url = urlToOpen { openURL(url) }
                 }, onCancel: { showSpoilerAlert = false })
                 .zIndex(100)
             }
         }
-        // 系统弹窗：无录像
-        .alert("暂无视频源", isPresented: $showNoVideoAlert) {
-            Button("知道了", role: .cancel) { }
-        } message: {
-            Text("本场比赛暂未收录直播或录像链接。")
-        }
     }
     
-    // 统一的处理逻辑 (和 HomeView 类似)
+    // 统一的处理逻辑 (与 HomeView 保持一致)
     func handleAction(for match: Match) {
-        // 1. 无链接
-        if !match.hasAction {
-            self.showNoVideoAlert = true
-            return
-        }
-        
-        guard let url = URL(string: match.schemeUrl) else { return }
-        
-        // 2. 已完赛 -> 防剧透
+        // 1. 如果已完赛，假装有链接，弹防剧透
         if match.status == "C" {
-            self.urlToOpen = url
+            self.urlToOpen = URL(string: match.schemeUrl)
             withAnimation { self.showSpoilerAlert = true }
         } else {
-            // 3. 未完赛 -> 直接跳直播
-            openURL(url)
+            // 2. 未完赛，尝试打开
+            if let url = URL(string: match.schemeUrl) {
+                openURL(url)
+            }
         }
     }
 }
@@ -101,21 +88,10 @@ struct ScheduleRow: View {
                     .font(.system(.body, design: .monospaced).bold())
                     .foregroundColor(.black)
                 
-                // 赛事名 + 无录像标识
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(match.competitionNameCN)
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                    
-                    if !match.hasAction {
-                        Text("暂无录像")
-                            .font(.system(size: 8))
-                            .padding(2)
-                            .background(Color.gray.opacity(0.2))
-                            .foregroundColor(.gray)
-                            .cornerRadius(2)
-                    }
-                }
+                // 赛事名 (删除了暂无录像的判断)
+                Text(match.competitionNameCN)
+                    .font(.caption)
+                    .foregroundColor(.gray)
             }
             .frame(width: 60)
             
@@ -125,7 +101,7 @@ struct ScheduleRow: View {
                     .font(.body.bold())
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .lineLimit(1).minimumScaleFactor(0.8)
-                    .foregroundColor(.black) // 确保按钮模式下文字是黑色的
+                    .foregroundColor(.black)
                 
                 ZStack {
                     if match.status == "C" {
@@ -153,8 +129,8 @@ struct ScheduleRow: View {
             .padding(.horizontal, 12)
             .background(Color.white)
             .cornerRadius(16)
-            // 如果有链接，加一个淡淡的阴影表示可点击；如果没有，阴影淡一点
-            .shadow(color: match.hasAction ? Color.arsenalRed.opacity(0.05) : Color.black.opacity(0.03), radius: 5, x: 0, y: 2)
+            // 恢复所有阴影为可点击状态
+            .shadow(color: Color.arsenalRed.opacity(0.05), radius: 5, x: 0, y: 2)
         }
         .padding(.horizontal)
     }

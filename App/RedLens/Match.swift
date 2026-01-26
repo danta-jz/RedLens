@@ -54,7 +54,11 @@ struct Match: Codable, Identifiable {
     
     // MARK: - 2. 逻辑属性
     var isFinished: Bool { status == "C" }
-    var hasAction: Bool { !schemeUrl.isEmpty }
+    
+    // ⚠️ 修改点：强制返回 true，让界面认为所有比赛都有录像
+    var hasAction: Bool {
+        return true
+    }
     
     var dateObject: Date? {
         let formatter = DateFormatter()
@@ -65,27 +69,21 @@ struct Match: Codable, Identifiable {
 
 // MARK: - 3. 时区转换核心 (伦敦 -> 北京)
 extension Match {
-    // 真实的 Date 对象 (转换了时区)
     private var realDate: Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        // 关键点：告诉系统，原始数据是“伦敦时间”
         formatter.timeZone = TimeZone(identifier: "Europe/London")
         return formatter.date(from: "\(date) \(time)")
     }
     
-    // 北京时间 (如 "04:00")
     var bjTime: String {
-        guard let date = realDate else { return time } // 转换失败就用原值
+        guard let date = realDate else { return time }
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
-        // 关键点：输出为“上海时间”
         formatter.timeZone = TimeZone(identifier: "Asia/Shanghai")
         return formatter.string(from: date)
     }
     
-    // 北京日期 (如 "2026-01-16")
-    // 很多比赛英国是周六晚，中国已经是周日凌晨，日期要加1天
     var bjDate: String {
         guard let date = realDate else { return date }
         let formatter = DateFormatter()
