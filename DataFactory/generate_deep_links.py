@@ -29,66 +29,84 @@ def generate_scheme(match):
     核心逻辑: 
     优先生成录像跳转 (PID)
     其次生成直播跳转 (Live URL/MgdbID)
+    支持多语言 PID（中文/粤语）
     """
     
     # --- 1. 尝试生成录像 Scheme (优先级最高) ---
     pid = match.get('migu_pid', '')
-    if pid:
-        # 录像跳转 (WORLDCUP_DETAIL)
-        live_url = match.get('migu_live_url', '')
-        mgdb_id = ""
-        if live_url:
-            match_id = re.search(r'live/(\d+)', live_url)
-            if match_id:
-                mgdb_id = match_id.group(1)
-                
+    pid_mandarin = match.get('migu_pid_mandarin', '')
+    pid_cantonese = match.get('migu_pid_cantonese', '')
+    
+    schemes = {}  # 存储多个语言版本的 scheme
+    
+    def _generate_vod_scheme(pid_value, mgdb_id=''):
+        """生成 VOD scheme 的辅助函数"""
+        if not pid_value:
+            return None
+        
         action_params = {
             "type": "JUMP_INNER_NEW_PAGE",
             "params": {
                 "frameID": "default-frame",
                 "pageID": "WORLDCUP_DETAIL",
                 "location": "h5_share",
-                "contentID": str(pid), # 录像 PID
+                "contentID": str(pid_value),  # 录像 PID
                 "extra": {}
             }
         }
         if mgdb_id:
             action_params["params"]["extra"]["mgdbID"] = str(mgdb_id)
-
+        
         json_str = json.dumps(action_params)
         encoded_json = urllib.parse.quote(json_str)
-        return f"miguvideo://miguvideo?action={encoded_json}", "VOD"
-
-    # --- 2. 尝试生成直播 Scheme (优先级次之) ---
+        return f"miguvideo://miguvideo?action={encoded_json}"
+    
+    # 获取 mgdb_id
     live_url = match.get('migu_live_url', '')
+    mgdb_id = ""
     if live_url:
-        # 从 URL 中提取直播间 ID (mgdbId)
         match_id = re.search(r'live/(\d+)', live_url)
         if match_id:
             mgdb_id = match_id.group(1)
-            
-            # 【核心修复】直播跳转也使用 WORLDCUP_DETAIL
-            # 根据抓包: ...share","extra":{"mgdbID":"..."}}}
-            action_params = {
-                "type": "JUMP_INNER_NEW_PAGE",
-                "params": {
-                    "frameID": "default-frame",
-                    "pageID": "WORLDCUP_DETAIL",  # 之前是 LIVE_DETAIL，现在改为 WORLDCUP_DETAIL
-                    "location": "h5_share",       # 补全 location
-                    "contentID": str(mgdb_id),    # 直播时，contentID 填 mgdbId
-                    "extra": {
-                        "mgdbID": str(mgdb_id)    # 关键：extra 里必须有 mgdbID
+    
+    # 生成主 PID scheme
+    if pid:
+        schemes['scheme_url'] = _generate_vod_scheme(pid, mgdb_id)
+        schemes['type'] = "VOD"
+    
+    # 生成中文版本 scheme
+    if pid_mandarin:
+        schemes['scheme_url_mandarin'] = _generate_vod_scheme(pid_mandarin, mgdb_id)
+    
+    # 生成粤语版本 scheme
+    if pid_cantonese:
+        schemes['scheme_url_cantonese'] = _generate_vod_scheme(pid_cantonese, mgdb_id)
+    
+    # 如果没有录像，尝试生成直播 scheme
+    if not pid:
+        if live_url:
+            if mgdb_id:
+                action_params = {
+                    "type": "JUMP_INNER_NEW_PAGE",
+                    "params": {
+                        "frameID": "default-frame",
+                        "pageID": "WORLDCUP_DETAIL",
+                        "location": "h5_share",
+                        "contentID": str(mgdb_id),
+                        "extra": {
+                            "mgdbID": str(mgdb_id)
+                        }
                     }
                 }
-            }
-            json_str = json.dumps(action_params)
-            encoded_json = urllib.parse.quote(json_str)
-            return f"miguvideo://miguvideo?action={encoded_json}", "LIVE"
-            
-    return "", "NONE"
+                json_str = json.dumps(action_params)
+                encoded_json = urllib.parse.quote(json_str)
+                schemes['scheme_url'] = f"miguvideo://miguvideo?action={encoded_json}"
+                schemes['type'] = "LIVE"
+    
+    return schemes
 
 def process_links():
-    logger.info("🔗 开始生成 Deep Links (修复版)...")
+    logger.info("🔗 开始生成 Deep Links (多语言版)...")
     
     try:
         with open(INPUT_FILE, 'r', encoding='utf-8') as f:
@@ -97,15 +115,30 @@ def process_links():
         updated_count = 0
         live_count = 0
         vod_count = 0
+        multilang_count = 0
         
         for match in matches:
-            scheme, link_type = generate_scheme(match)
-            match['scheme_url'] = scheme
+            schemes = generate_scheme(match)
             
+            # 更新主 scheme
+            match['scheme_url'] = schemes.get('scheme_url', '')
+            
+            # 更新多语言 scheme
+            if schemes.get('scheme_url_mandarin'):
+                match['scheme_url_mandarin'] = schemes.get('scheme_url_mandarin')
+                multilang_count += 1
+            
+            if schemes.get('scheme_url_cantonese'):
+                match['scheme_url_cantonese'] = schemes.get('scheme_url_cantonese')
+                multilang_count += 1
+            
+            link_type = schemes.get('type', 'NONE')
             if link_type != "NONE":
                 updated_count += 1
-                if link_type == "LIVE": live_count += 1
-                elif link_type == "VOD": vod_count += 1
+                if link_type == "LIVE": 
+                    live_count += 1
+                elif link_type == "VOD": 
+                    vod_count += 1
 
         # 保存回文件
         with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
@@ -114,7 +147,8 @@ def process_links():
         logger.info(f"✅ 处理完成!")
         logger.info(f"   总链接数: {updated_count}")
         logger.info(f"   📼 录像链接: {vod_count}")
-        logger.info(f"   🔴 直播链接: {live_count} (已采用抓包结构)")
+        logger.info(f"   🔴 直播链接: {live_count}")
+        logger.info(f"   🌐 多语言支持: {multilang_count} (中文/粤语)")
         
     except Exception as e:
         logger.error(f"❌ 失败: {e}")

@@ -10,7 +10,10 @@
     "migu_pid": "957282050",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/957282050",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542513",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957282050%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542513%22%7D%7D%7D"
+    "migu_pid_mandarin": "957282050",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/957282050",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957282050%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542513%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957282050%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542513%22%7D%7D%7D"
   },
   {
     "date": "2025-08-23",
@@ -23,7 +26,10 @@
     "migu_pid": "957542916",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/957542916",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542506",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957542916%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542506%22%7D%7D%7D"
+    "migu_pid_mandarin": "957542916",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/957542916",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957542916%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542506%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957542916%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542506%22%7D%7D%7D"
   },
   {
     "date": "2025-08-31",
@@ -36,7 +42,10 @@
     "migu_pid": "957773932",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/957773932",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542492",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957773932%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542492%22%7D%7D%7D"
+    "migu_pid_mandarin": "957773932",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/957773932",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957773932%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542492%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22957773932%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542492%22%7D%7D%7D"
   },
   {
     "date": "2025-09-13",
@@ -49,7 +58,10 @@
     "migu_pid": "958107307",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/958107307",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542490",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958107307%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542490%22%7D%7D%7D"
+    "migu_pid_mandarin": "958107307",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/958107307",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958107307%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542490%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958107307%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542490%22%7D%7D%7D"
   },
   {
     "date": "2025-09-16",
@@ -62,6 +74,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -75,7 +91,10 @@
     "migu_pid": "958370481",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/958370481",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542480",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958370481%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542480%22%7D%7D%7D"
+    "migu_pid_mandarin": "958370481",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/958370481",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958370481%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542480%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958370481%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542480%22%7D%7D%7D"
   },
   {
     "date": "2025-09-24",
@@ -88,6 +107,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -101,7 +124,10 @@
     "migu_pid": "958721216",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/958721216",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542464",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958721216%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542464%22%7D%7D%7D"
+    "migu_pid_mandarin": "958721216",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/958721216",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958721216%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542464%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22958721216%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542464%22%7D%7D%7D"
   },
   {
     "date": "2025-10-01",
@@ -114,6 +140,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -127,7 +157,10 @@
     "migu_pid": "959012589",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/959012589",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542460",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959012589%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542460%22%7D%7D%7D"
+    "migu_pid_mandarin": "959012589",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/959012589",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959012589%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542460%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959012589%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542460%22%7D%7D%7D"
   },
   {
     "date": "2025-10-18",
@@ -140,7 +173,10 @@
     "migu_pid": "959350821",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/959350821",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542448",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959350821%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542448%22%7D%7D%7D"
+    "migu_pid_mandarin": "959350821",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/959350821",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959350821%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542448%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959350821%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542448%22%7D%7D%7D"
   },
   {
     "date": "2025-10-21",
@@ -153,6 +189,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -166,7 +206,10 @@
     "migu_pid": "959648699",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/959648699",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542440",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959648699%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542440%22%7D%7D%7D"
+    "migu_pid_mandarin": "959648699",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/959648699",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959648699%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542440%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959648699%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542440%22%7D%7D%7D"
   },
   {
     "date": "2025-10-29",
@@ -179,6 +222,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -192,7 +239,10 @@
     "migu_pid": "959845375",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/959845375",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542430",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959845375%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542430%22%7D%7D%7D"
+    "migu_pid_mandarin": "959845375",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/959845375",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959845375%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542430%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22959845375%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542430%22%7D%7D%7D"
   },
   {
     "date": "2025-11-04",
@@ -205,6 +255,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -218,7 +272,10 @@
     "migu_pid": "960052236",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/960052236",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542414",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960052236%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542414%22%7D%7D%7D"
+    "migu_pid_mandarin": "960052236",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/960052236",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960052236%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542414%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960052236%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542414%22%7D%7D%7D"
   },
   {
     "date": "2025-11-23",
@@ -231,7 +288,13 @@
     "migu_pid": "960620968",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/960620968",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542410",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960620968%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542410%22%7D%7D%7D"
+    "migu_pid_mandarin": "960620968",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/960620968",
+    "migu_pid_cantonese": "960621425",
+    "migu_detail_url_cantonese": "https://www.miguvideo.com/p/detail/960621425",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960620968%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542410%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960620968%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542410%22%7D%7D%7D",
+    "scheme_url_cantonese": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960621425%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542410%22%7D%7D%7D"
   },
   {
     "date": "2025-11-26",
@@ -244,6 +307,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -257,7 +324,13 @@
     "migu_pid": "960822408",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/960822408",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542399",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960822408%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542399%22%7D%7D%7D"
+    "migu_pid_mandarin": "960822408",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/960822408",
+    "migu_pid_cantonese": "960822747",
+    "migu_detail_url_cantonese": "https://www.miguvideo.com/p/detail/960822747",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960822408%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542399%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960822408%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542399%22%7D%7D%7D",
+    "scheme_url_cantonese": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960822747%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542399%22%7D%7D%7D"
   },
   {
     "date": "2025-12-03",
@@ -270,7 +343,10 @@
     "migu_pid": "960919850",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/960919850",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542390",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960919850%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542390%22%7D%7D%7D"
+    "migu_pid_mandarin": "960919850",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/960919850",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960919850%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542390%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960919850%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542390%22%7D%7D%7D"
   },
   {
     "date": "2025-12-06",
@@ -280,10 +356,13 @@
     "is_home": false,
     "status": "C",
     "score": "2 - 1",
-    "migu_pid": "961005458",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/961005458",
+    "migu_pid": "960989820",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/960989820",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542380",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961005458%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542380%22%7D%7D%7D"
+    "migu_pid_mandarin": "960989820",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/960989820",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960989820%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542380%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960989820%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542380%22%7D%7D%7D"
   },
   {
     "date": "2025-12-10",
@@ -296,6 +375,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -309,7 +392,10 @@
     "migu_pid": "961170109",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/961170109",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542371",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961170109%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542371%22%7D%7D%7D"
+    "migu_pid_mandarin": "961170109",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/961170109",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961170109%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542371%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961170109%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542371%22%7D%7D%7D"
   },
   {
     "date": "2025-12-20",
@@ -322,7 +408,10 @@
     "migu_pid": "961314176",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/961314176",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542358",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961314176%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542358%22%7D%7D%7D"
+    "migu_pid_mandarin": "961314176",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/961314176",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961314176%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542358%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961314176%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542358%22%7D%7D%7D"
   },
   {
     "date": "2025-12-23",
@@ -335,6 +424,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -348,7 +441,13 @@
     "migu_pid": "961573346",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/961573346",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542351",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961573346%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542351%22%7D%7D%7D"
+    "migu_pid_mandarin": "961573346",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/961573346",
+    "migu_pid_cantonese": "961589182",
+    "migu_detail_url_cantonese": "https://www.miguvideo.com/p/detail/961589182",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961573346%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542351%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961573346%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542351%22%7D%7D%7D",
+    "scheme_url_cantonese": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22961589182%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542351%22%7D%7D%7D"
   },
   {
     "date": "2025-12-30",
@@ -361,7 +460,10 @@
     "migu_pid": "962044362",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/962044362",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542341",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962044362%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542341%22%7D%7D%7D"
+    "migu_pid_mandarin": "962044362",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/962044362",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962044362%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542341%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962044362%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542341%22%7D%7D%7D"
   },
   {
     "date": "2026-01-03",
@@ -374,7 +476,13 @@
     "migu_pid": "962119740",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/962119740",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542331",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962119740%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542331%22%7D%7D%7D"
+    "migu_pid_mandarin": "962119740",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/962119740",
+    "migu_pid_cantonese": "962119974",
+    "migu_detail_url_cantonese": "https://www.miguvideo.com/p/detail/962119974",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962119740%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542331%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962119740%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542331%22%7D%7D%7D",
+    "scheme_url_cantonese": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962119974%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542331%22%7D%7D%7D"
   },
   {
     "date": "2026-01-08",
@@ -384,10 +492,13 @@
     "is_home": true,
     "status": "C",
     "score": "0 - 0",
-    "migu_pid": "962260399",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/962260399",
+    "migu_pid": "962260392",
+    "migu_detail_url": "https://www.miguvideo.com/p/detail/962260392",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542320",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962260399%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542320%22%7D%7D%7D"
+    "migu_pid_mandarin": "962260392",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/962260392",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962260392%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542320%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962260392%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542320%22%7D%7D%7D"
   },
   {
     "date": "2026-01-11",
@@ -400,7 +511,13 @@
     "migu_pid": "962347145",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/962347145",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000563854",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962347145%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000563854%22%7D%7D%7D"
+    "migu_pid_mandarin": "962347145",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/962347145",
+    "migu_pid_cantonese": "962348765",
+    "migu_detail_url_cantonese": "https://www.miguvideo.com/p/detail/962348765",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962347145%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000563854%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962347145%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000563854%22%7D%7D%7D",
+    "scheme_url_cantonese": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962348765%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000563854%22%7D%7D%7D"
   },
   {
     "date": "2026-01-14",
@@ -413,6 +530,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -426,7 +547,10 @@
     "migu_pid": "962474901",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/962474901",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542305",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962474901%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542305%22%7D%7D%7D"
+    "migu_pid_mandarin": "962474901",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/962474901",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962474901%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542305%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962474901%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542305%22%7D%7D%7D"
   },
   {
     "date": "2026-01-20",
@@ -439,6 +563,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -452,7 +580,13 @@
     "migu_pid": "962676489",
     "migu_detail_url": "https://www.miguvideo.com/p/detail/962676489",
     "migu_live_url": "https://www.miguvideo.com/p/live/120000542300",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962676489%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542300%22%7D%7D%7D"
+    "migu_pid_mandarin": "962676489",
+    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/962676489",
+    "migu_pid_cantonese": "962676721",
+    "migu_detail_url_cantonese": "https://www.miguvideo.com/p/detail/962676721",
+    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962676489%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542300%22%7D%7D%7D",
+    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962676489%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542300%22%7D%7D%7D",
+    "scheme_url_cantonese": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22962676721%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542300%22%7D%7D%7D"
   },
   {
     "date": "2026-01-28",
@@ -465,6 +599,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -491,6 +629,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -530,6 +672,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   },
   {
@@ -581,8 +727,8 @@
     "score": "",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542231",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22120000542231%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542231%22%7D%7D%7D"
+    "migu_live_url": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-03-21",
@@ -686,6 +832,10 @@
     "migu_pid": "",
     "migu_detail_url": "",
     "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
     "scheme_url": ""
   }
 ]

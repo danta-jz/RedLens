@@ -170,7 +170,7 @@ class CompleteMiguFetcher:
         return tasks
 
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=1, max=5), retry=retry_if_exception_type(Exception), reraise=False)
-    def fetch_full_match_replay(self, mgdb_id: str) -> Optional[str]:
+    def fetch_full_match_replay(self, mgdb_id: str) -> Optional[Dict]:
         # 查详情页找 PID
         url = f"https://vms-sc.miguvideo.com/vms-match/v5/staticcache/basic/all-view-list/{mgdb_id}/2/miguvideo"
         try:
@@ -189,49 +189,181 @@ class CompleteMiguFetcher:
                     return 0
                 except: return 0
             
-            def is_full_replay(video_name):
-                """判断是否是全场回放而非集锦"""
-                # 优先判定：包含"回放"但不包含"集锦"
-                has_replay = '回放' in video_name
-                has_highlight = '集锦' in video_name
-                return has_replay and not has_highlight
-
-            # 策略1: 找类型=4的视频，进一步筛选出"全场回放"（排除集锦）
-            type4_videos = [r for r in replay_list if r.get('type', '') == '4']
+            def is_definitely_highlight(video_name):
+                """判断是否一定是集锦"""
+                return '集锦' in video_name or '精彩' in video_name
             
-            # 策略1a: 优先找包含"回放"但不包含"集锦"的视频
-            full_replays = [v for v in type4_videos if is_full_replay(v.get('name', ''))]
-            if full_replays:
-                # 在全场回放中选最长的（通常是主讲解版本）
-                longest = max(full_replays, key=lambda x: duration_to_seconds(x.get('duration', '00:00')))
+            def detect_language_commentators(video_name):
+                """
+                检测视频的语言和解说人数
+                返回: (language, num_commentators, priority)
+                language: 'mandarin', 'cantonese', 'english', 'unknown'
+                num_commentators: 实际的解说人数 (从括号中的名字推断)
+                priority: 用于排序的优先级 (越高越优先)
+                """
+                import re
+                
+                # 统计括号中的人名数（用逗号和顿号分割）
+                commentator_pattern = r'[（(]([^)）]+)[)）]'
+                match = re.search(commentator_pattern, video_name)
+                num_commentators = 0
+                
+                if match:
+                    names = match.group(1)
+                    # 统计人数：逗号、顿号、and、&作为分隔符
+                    num_commentators = names.count('、') + names.count(',') + names.count('and') + names.count('&') + 1
+                
+                # 检测粤语标记（粤语多数是2人）
+                if '粤' in video_name or any(name in video_name for name in ['陈凯冬', '何辉', '黄镇', '罗毅']):
+                    return 'cantonese', max(num_commentators, 2), 1  # 粤语优先级最低
+                
+                # 检测英文标记
+                if 'English' in video_name or '英文' in video_name:
+                    return 'english', max(num_commentators, 1), 2
+                
+                # 检测中文标记 - 使用括号内的名字来判断
+                if num_commentators >= 3:
+                    # 3人及以上的中文解说
+                    return 'mandarin', num_commentators, 10 + num_commentators  # 3人版本最优（优先级最高）
+                elif num_commentators == 1:
+                    # 1人解说（单人评论员）
+                    return 'mandarin', 1, 3
+                elif num_commentators == 2:
+                    # 2人中文解说
+                    return 'mandarin', 2, 5
+                
+                # 其他情况
+                if '中文' in video_name or '国语' in video_name:
+                    return 'mandarin', max(num_commentators, 2), 4
+                
+                return 'unknown', num_commentators if num_commentators > 0 else 2, 0
+
+            # 日志记录可用的视频
+            logger.debug(f"   📹 检查 mgdbId={mgdb_id} 的视频列表: {len(replay_list)} 个")
+            for idx, v in enumerate(replay_list[:8]):  # 记录前8个，便于分析语言
+                dur_sec = duration_to_seconds(v.get('duration', '00:00'))
+                lang, commentators, priority = detect_language_commentators(v.get('name', ''))
+                logger.debug(f"     [{idx+1}] {v.get('name')} | 时长={v.get('duration')} | 语言={lang} | {commentators}人 | 优先级={priority}")
+
+            # 【优先级1】查找中文全场回放（优先选择3人解说）
+            full_replays_with_lang = []
+            for v in replay_list:
+                if is_definitely_highlight(v.get('name', '')):
+                    continue
+                lang, commentators, priority = detect_language_commentators(v.get('name', ''))
+                dur_sec = duration_to_seconds(v.get('duration', '00:00'))
+                
+                # 只考虑"回放"标记的视频和时长足够长的视频
+                if '回放' in v.get('name', '') and dur_sec > 3600:  # 1小时以上的回放
+                    full_replays_with_lang.append({
+                        'video': v,
+                        'duration_sec': dur_sec,
+                        'language': lang,
+                        'commentators': commentators,
+                        'priority': priority,
+                        'is_replay_labeled': True
+                    })
+            
+            # 收集所有语言版本的 PID
+            replay_pids = {
+                'mandarin': None,     # 中文 PID
+                'cantonese': None,    # 粤语 PID
+                'other': None         # 其他 PID
+            }
+            
+            if full_replays_with_lang:
+                # 按优先级排序
+                sorted_replays = sorted(
+                    full_replays_with_lang,
+                    key=lambda x: (x['priority'], x['duration_sec']),
+                    reverse=True
+                )
+                
+                # 【重要】遍历所有视频，收集所有语言的 PID（不仅是最优的）
+                best = sorted_replays[0]  # 最优选择（用于 primary）
+                
+                for idx, item in enumerate(sorted_replays):  # 遍历所有，不限 3 个
+                    lang = item['language']
+                    pid = item['video'].get('pID', '')
+                    name = item['video'].get('name', '')
+                    dur_min = item['duration_sec'] // 60
+                    priority = item['priority']
+                    
+                    # 记录日志（前5个）
+                    if idx < 5:
+                        logger.debug(f"   [{idx+1}] {lang:10} | 优先级={priority:2d} | {name} ({dur_min}分钟, PID: {pid})")
+                    
+                    # 保存各语言的 PID（最高优先级的版本）
+                    if lang == 'mandarin' and not replay_pids['mandarin']:
+                        replay_pids['mandarin'] = pid
+                    elif lang == 'cantonese' and not replay_pids['cantonese']:
+                        replay_pids['cantonese'] = pid
+                    elif not replay_pids['other']:
+                        replay_pids['other'] = pid
+                
+                best_pid = best['video'].get('pID', '')
+                if best_pid:
+                    logger.debug(f"   ✅ 最优选择(优先级={best['priority']}): {best['video'].get('name')} (PID: {best_pid})")
+                    replay_pids['primary'] = best_pid  # 主 PID（优先级最高的）
+                    return replay_pids
+            
+            # 【优先级2】查找任何非集锦的回放视频（不限语言）
+            replay_candidates = [
+                v for v in replay_list 
+                if '回放' in v.get('name', '') and not is_definitely_highlight(v.get('name', '')) and duration_to_seconds(v.get('duration', '00:00')) > 3600
+            ]
+            if replay_candidates:
+                longest = max(replay_candidates, key=lambda x: duration_to_seconds(x.get('duration', '00:00')))
                 pid = longest.get('pID', '')
                 if pid:
-                    logger.debug(f"   ✅ 找到全场回放: {longest.get('name')} (PID: {pid})")
-                    return pid
+                    lang, _, _ = detect_language_commentators(longest.get('name', ''))
+                    logger.debug(f"   ✅ 优先级2(回放标签): {longest.get('name')} ({lang}, PID: {pid})")
+                    replay_pids['primary'] = pid
+                    if lang == 'mandarin':
+                        replay_pids['mandarin'] = pid
+                    elif lang == 'cantonese':
+                        replay_pids['cantonese'] = pid
+                    return replay_pids
             
-            # 策略1b: 如果没有"回放"关键词的，就选type=4中时长最长的
-            # （这可能是老版本或其他格式的完整比赛）
+            # 【优先级3】从所有视频中找时长最长且可能是完整比赛的（>90分钟）
+            full_match_candidates = [
+                v for v in replay_list 
+                if not is_definitely_highlight(v.get('name', '')) and duration_to_seconds(v.get('duration', '00:00')) > 5400
+            ]
+            if full_match_candidates:
+                longest = max(full_match_candidates, key=lambda x: duration_to_seconds(x.get('duration', '00:00')))
+                dur_sec = duration_to_seconds(longest.get('duration', '00:00'))
+                pid = longest.get('pID', '')
+                if pid:
+                    logger.debug(f"   ✅ 优先级3(长时间): {longest.get('name')} ({int(dur_sec/60)}分钟, PID: {pid})")
+                    replay_pids['primary'] = pid
+                    return replay_pids
+            
+            # 【优先级4】type=4 的视频中找最长的（可能是官方版本）
+            type4_videos = [r for r in replay_list if r.get('type', '') == '4']
             if type4_videos:
                 longest = max(type4_videos, key=lambda x: duration_to_seconds(x.get('duration', '00:00')))
-                # 只有在时长超过1小时才认为是完整比赛，否则可能是集锦
-                duration_sec = duration_to_seconds(longest.get('duration', '00:00'))
-                if duration_sec > 3600:
+                dur_sec = duration_to_seconds(longest.get('duration', '00:00'))
+                if not is_definitely_highlight(longest.get('name', '')):
                     pid = longest.get('pID', '')
                     if pid:
-                        logger.debug(f"   ✅ 找到全场回放(无关键词): {longest.get('name')} (PID: {pid})")
-                        return pid
+                        logger.debug(f"   ✅ 优先级4(type=4): {longest.get('name')} ({int(dur_sec/60)}分钟, PID: {pid})")
+                        replay_pids['primary'] = pid
+                        return replay_pids
             
-            # 兜底: 从所有视频中找最长的完整比赛
-            if replay_list:
-                longest = max(replay_list, key=lambda x: duration_to_seconds(x.get('duration', '00:00')))
-                duration_sec = duration_to_seconds(longest.get('duration', '00:00'))
-                if duration_sec > 3600:  # 至少1小时
-                    pid = longest.get('pID', '')
-                    if pid:
-                        logger.debug(f"   ⚠️ 兜底选择: {longest.get('name')} (PID: {pid})")
-                        return pid
+            # 【优先级5】兜底: 所有视频中找最长的非集锦视频
+            non_highlight_videos = [v for v in replay_list if not is_definitely_highlight(v.get('name', ''))]
+            if non_highlight_videos:
+                longest = max(non_highlight_videos, key=lambda x: duration_to_seconds(x.get('duration', '00:00')))
+                dur_sec = duration_to_seconds(longest.get('duration', '00:00'))
+                pid = longest.get('pID', '')
+                if pid and dur_sec > 1800:  # 至少30分钟
+                    logger.debug(f"   ⚠️ 优先级5(兜底): {longest.get('name')} ({int(dur_sec/60)}分钟, PID: {pid})")
+                    replay_pids['primary'] = pid
+                    return replay_pids
             
-            return None
+            logger.debug(f"   ❌ 未找到合适的全场回放视频")
+            return None if not any(replay_pids.values()) else replay_pids
         except Exception as e:
             logger.warning(f"获取全场回放失败: {e}")
             return None
@@ -279,10 +411,13 @@ class CompleteMiguFetcher:
             
             # 【关键修改】对于已完赛的比赛，深度抓取并验证PID
             # 这是为了确保我们获取全场回放而非集锦
+            # 现在支持返回多语言的 PID
+            replay_pids = {}  # {'mandarin': pid, 'cantonese': pid, 'primary': pid}
             if is_finished and mgdb_id:
-                verified_pid = self.fetch_full_match_replay(mgdb_id)
-                if verified_pid:
-                    pid = verified_pid  # 使用验证后的PID
+                verified_pids = self.fetch_full_match_replay(mgdb_id)
+                if verified_pids:
+                    replay_pids = verified_pids  # 获取多语言 PID 字典
+                    pid = verified_pids.get('primary', pid)  # 使用优先级最高的 PID
                 # 如果深度抓取没有找到，保持原有的 pid（可能是空或集锦）
 
             try: formatted_date = datetime.strptime(date_key, '%Y%m%d').strftime('%Y-%m-%d')
@@ -296,14 +431,22 @@ class CompleteMiguFetcher:
                 'competition': comp_name
             }
             
-            # 填充录像信息
+            # 填充录像信息 - 支持多语言 PID
             if pid:
-                result['pid'] = pid
-                result['detail_url'] = f"https://www.miguvideo.com/p/detail/{pid}"
+                result['migu_pid'] = pid  # 主 PID（默认中文优先）
+                result['migu_detail_url'] = f"https://www.miguvideo.com/p/detail/{pid}"
+            
+            # 添加语言特定的 PID（便于用户选择语言）
+            if replay_pids.get('mandarin'):
+                result['migu_pid_mandarin'] = replay_pids.get('mandarin')
+                result['migu_detail_url_mandarin'] = f"https://www.miguvideo.com/p/detail/{replay_pids.get('mandarin')}"
+            if replay_pids.get('cantonese'):
+                result['migu_pid_cantonese'] = replay_pids.get('cantonese')
+                result['migu_detail_url_cantonese'] = f"https://www.miguvideo.com/p/detail/{replay_pids.get('cantonese')}"
             
             # 填充直播信息 (只要有 mgdbId 就填，不管完没完赛)
             if mgdb_id:
-                result['live_url'] = f"https://www.miguvideo.com/p/live/{mgdb_id}"
+                result['migu_live_url'] = f"https://www.miguvideo.com/p/live/{mgdb_id}"
                 
             # 提取比分
             if confront_teams and len(confront_teams) == 2:

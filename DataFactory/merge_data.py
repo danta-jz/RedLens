@@ -79,9 +79,18 @@ def merge_data() -> List[Dict]:
                     if (opponent_cn in migu_opp or migu_opp in opponent_cn or 
                         opponent.lower() in migu_opp.lower()):
                         
-                        merged['migu_pid'] = migu.get('pid', '')
-                        merged['migu_detail_url'] = migu.get('detail_url', '')
-                        merged['migu_live_url'] = migu.get('live_url', '')
+                        # 合并所有 migu 数据字段
+                        merged['migu_pid'] = migu.get('migu_pid', '')
+                        merged['migu_detail_url'] = migu.get('migu_detail_url', '')
+                        merged['migu_live_url'] = migu.get('migu_live_url', '')
+                        
+                        # 新增：多语言 PID 支持
+                        if migu.get('migu_pid_mandarin'):
+                            merged['migu_pid_mandarin'] = migu.get('migu_pid_mandarin', '')
+                            merged['migu_detail_url_mandarin'] = migu.get('migu_detail_url_mandarin', '')
+                        if migu.get('migu_pid_cantonese'):
+                            merged['migu_pid_cantonese'] = migu.get('migu_pid_cantonese', '')
+                            merged['migu_detail_url_cantonese'] = migu.get('migu_detail_url_cantonese', '')
                         
                         match_count += 1
                         found = True
@@ -99,6 +108,11 @@ def merge_data() -> List[Dict]:
             merged['migu_pid'] = ''
             merged['migu_detail_url'] = ''
             merged['migu_live_url'] = ''
+            # 多语言 PID 也初始化为空
+            merged['migu_pid_mandarin'] = ''
+            merged['migu_detail_url_mandarin'] = ''
+            merged['migu_pid_cantonese'] = ''
+            merged['migu_detail_url_cantonese'] = ''
             
             # 调试日志：为什么没匹配上？
             # logger.debug(f"❌ 未匹配: {date} {opponent} (可能原因: 咪咕无数据 或 队名未映射)")
