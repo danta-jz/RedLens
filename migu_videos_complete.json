@@ -326,26 +326,28 @@
     "opponent": "诺丁汉森林",
     "is_home": false,
     "title": "诺丁汉森林 vs 阿森纳",
-    "match_status": "0",
-    "is_finished": false,
+    "match_status": "2",
+    "is_finished": true,
     "competition": "英超",
-    "pid": "962412201",
-    "detail_url": "https://www.miguvideo.com/p/detail/962412201",
+    "pid": "962474901",
+    "detail_url": "https://www.miguvideo.com/p/detail/962474901",
     "live_url": "https://www.miguvideo.com/p/live/120000542305",
-    "arsenal_score": -1,
-    "opponent_score": -1
+    "arsenal_score": 0,
+    "opponent_score": 0
   },
   {
     "date": "2026-01-26",
     "opponent": "曼联",
     "is_home": true,
     "title": "阿森纳 vs 曼联",
-    "match_status": "0",
-    "is_finished": false,
+    "match_status": "2",
+    "is_finished": true,
     "competition": "英超",
+    "pid": "962676489",
+    "detail_url": "https://www.miguvideo.com/p/detail/962676489",
     "live_url": "https://www.miguvideo.com/p/live/120000542300",
-    "arsenal_score": -1,
-    "opponent_score": -1
+    "arsenal_score": 2,
+    "opponent_score": 3
   },
   {
     "date": "2026-01-31",
@@ -421,6 +423,18 @@
   },
   {
     "date": "2026-03-14",
+    "opponent": "埃弗顿",
+    "is_home": true,
+    "title": "阿森纳 vs 埃弗顿",
+    "match_status": "0",
+    "is_finished": false,
+    "competition": "英超",
+    "live_url": "https://www.miguvideo.com/p/live/120000542231",
+    "arsenal_score": -1,
+    "opponent_score": -1
+  },
+  {
+    "date": "2026-03-15",
     "opponent": "埃弗顿",
     "is_home": true,
     "title": "阿森纳 vs 埃弗顿",
