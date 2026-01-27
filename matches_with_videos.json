@@ -335,18 +335,19 @@
   {
     "date": "2025-12-03",
     "time": "19:30",
-    "opponent": "Brentford",
+    "opponent": "Brentford FC",
     "competition": "Premier League",
     "is_home": true,
     "status": "C",
     "score": "2 - 0",
-    "migu_pid": "960919850",
-    "migu_detail_url": "https://www.miguvideo.com/p/detail/960919850",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542390",
-    "migu_pid_mandarin": "960919850",
-    "migu_detail_url_mandarin": "https://www.miguvideo.com/p/detail/960919850",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960919850%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542390%22%7D%7D%7D",
-    "scheme_url_mandarin": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22960919850%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542390%22%7D%7D%7D"
+    "migu_pid": "",
+    "migu_detail_url": "",
+    "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
+    "scheme_url": ""
   },
   {
     "date": "2025-12-06",
@@ -651,15 +652,19 @@
   {
     "date": "2026-02-12",
     "time": "20:00",
-    "opponent": "Brentford",
+    "opponent": "Brentford FC",
     "competition": "Premier League",
     "is_home": false,
     "status": "U",
     "score": "",
     "migu_pid": "",
     "migu_detail_url": "",
-    "migu_live_url": "https://www.miguvideo.com/p/live/120000542270",
-    "scheme_url": "miguvideo://miguvideo?action=%7B%22type%22%3A%20%22JUMP_INNER_NEW_PAGE%22%2C%20%22params%22%3A%20%7B%22frameID%22%3A%20%22default-frame%22%2C%20%22pageID%22%3A%20%22WORLDCUP_DETAIL%22%2C%20%22location%22%3A%20%22h5_share%22%2C%20%22contentID%22%3A%20%22120000542270%22%2C%20%22extra%22%3A%20%7B%22mgdbID%22%3A%20%22120000542270%22%7D%7D%7D"
+    "migu_live_url": "",
+    "migu_pid_mandarin": "",
+    "migu_detail_url_mandarin": "",
+    "migu_pid_cantonese": "",
+    "migu_detail_url_cantonese": "",
+    "scheme_url": ""
   },
   {
     "date": "2026-02-15",
